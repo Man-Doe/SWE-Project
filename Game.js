@@ -1,1 +1,1 @@
-print('gonna commit as an example.')
+print('gonna commit as an example')
