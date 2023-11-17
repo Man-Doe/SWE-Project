@@ -1,5 +1,4 @@
 //PLACEHOLDER version
-
 var Game = function () {
     var currentRound;
     var currentQuestion;
@@ -102,6 +101,15 @@ var Game = function () {
                 }
                 return isCorrect;
             },
+            recordOnLeaderBoard: function (userName) {
+                return;
+            },
+            getLeaderBoardRankAccuracy: function (rankInput) {
+                return "82.2%";
+            },
+            getLeaderBoardRankUserName: function (rankInput) {
+                return "Some username";
+            },
             getChoiceText: function (choiceInput) {
                 return currentQuestion.getChoiceText(choiceInput);
             },
@@ -122,6 +130,12 @@ var Game = function () {
             },
             getGuessRemaning: function() {
                 return guessRemaining;
+            },
+            getGuessAmount: function() {
+                return guessAmount;
+            },
+            getGuessCorrect: function() {
+                return guessCorrect;
             },
             playAudioClip: function () {
                 currentQuestion.playAudioClip();
