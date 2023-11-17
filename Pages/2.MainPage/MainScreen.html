@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
     <link rel="stylesheet" href="../../global.css" />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./MainIndex.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
@@ -13,38 +13,38 @@
   </head>
   <body>
     <div class="main-screen">
-      <div class="bpm-rhythm-game">BPM Rhythm Game UI Demonstration</div>
-      <div class="button" id="buttonContainer">
+      <div class="headingText">BPM Rhythm Game UI Demonstration</div>
+      <div class="button" id="ChooseDifPage">
         <div class="playGame">Play Game</div>
       </div>
-      <div class="button1" id="buttonContainer1">
-        <div class="Settings">Settings</div>
-      </div>
-      
-      <div class="button2" id="buttonContainer2">
+      <div class="button2" id="leaderPage">
         <div class="leaderboard">Leaderboards</div>
+      </div>
+      <div class="button1" id="settingsPage">
+        <div class="Settings">Settings</div>
       </div>
     </div>
 
     <script>
-      var buttonContainer = document.getElementById("buttonContainer");
+      var buttonContainer = document.getElementById("ChooseDifPage");
       if (buttonContainer) {
         buttonContainer.addEventListener("click", function (e) {
-          // Please sync "Difficulty Selection" to the project
+          window.location.href = '../3.GameplayScreens/1.ChooseDif/Selection.html'
         });
       }
       
-      var buttonContainer1 = document.getElementById("buttonContainer1");
+      var buttonContainer1 = document.getElementById("leaderPage");
       if (buttonContainer1) {
         buttonContainer1.addEventListener("click", function (e) {
-          // Please sync "Settings" to the project
+          window.location.href = '../4.LeaderboardPage/Leaderboard.html'
+          
         });
       }
       
-      var buttonContainer2 = document.getElementById("buttonContainer2");
+      var buttonContainer2 = document.getElementById("settingsPage");
       if (buttonContainer2) {
         buttonContainer2.addEventListener("click", function (e) {
-          // Please sync "Leaderboards" to the project
+          window.location.href = '../5.SettingsPage/Settings.html'
         });
       }
       </script>

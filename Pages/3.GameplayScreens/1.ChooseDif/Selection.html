@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="../../../global.css" />
+    <link rel="stylesheet" href="./SelectIndex.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="difficulty-selection">
+      <div class="select-mode">select mode</div>
+      <div class="button" id="eButton">
+        <div class="buttonText">Easy</div>
+      </div>
+      <div class="button1" id="mButton">
+        <div class="buttonText">Medium</div>
+      </div>
+      <div class="button2" id="hButton">
+        <div class="buttonText">Hard</div>
+      </div>
+      <div class="button3" id="tempButton">
+        <div class="buttonText">tempResults</div>
+      </div>
+      <img
+        class="backButton"
+        alt=""
+        src="../../../Assets/vector-1.svg"
+        id="bButton"
+      />
+    </div>
+
+    <script>
+      var buttonContainer = document.getElementById("eButton");
+      if (buttonContainer) {
+        buttonContainer.addEventListener("click", function (e) {
+          // Please sync "Easy 1" to the project
+        });
+      }
+      
+      var buttonContainer1 = document.getElementById("mButton");
+      if (buttonContainer1) {
+        buttonContainer1.addEventListener("click", function (e) {
+          // Please sync "Meidum 1" to the project
+        });
+      }
+      
+      var buttonContainer2 = document.getElementById("hButton");
+      if (buttonContainer2) {
+        buttonContainer2.addEventListener("click", function (e) {
+          
+        });
+      }
+
+      var buttonContainer2 = document.getElementById("tempButton");
+      if (buttonContainer2) {
+        buttonContainer2.addEventListener("click", function (e) {
+          window.location.href = '../5.Results/Results.html'
+        });
+      }
+      
+      var vector = document.getElementById("bButton");
+      if (vector) {
+        vector.addEventListener("click", function (e) {
+            window.location.href = '../../2.MainPage/MainScreen.html'
+        });
+      }
+      </script>
+  </body>
+</html>
