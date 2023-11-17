@@ -1,4 +1,4 @@
-.registration-page {
+.headingText{
   position: absolute;
   top: 217px;
   left: 250px;
@@ -7,7 +7,7 @@
   height: 71px;
   display: inline-block;
 }
-.please-enter-name {
+.textBox {
   position: absolute;
   top: 317px;
   left: 250px;
@@ -16,7 +16,7 @@
   height: 39px;
   font-size: 20px;
 }
-.register {
+.buttonText {
   position: relative;
 }
 .button {
@@ -51,4 +51,9 @@
   color: var(--color-black);
   font-family: var(--font-inter);
   
+}
+
+body{
+  background-color: url(cool.jpg);
+  background-size: 100%;
 }
