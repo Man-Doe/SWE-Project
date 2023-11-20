@@ -38,23 +38,12 @@
       const corGuesses = localStorage.getItem('correct-guesses');
       const gameMode = localStorage.getItem('game-mode')
 
+      console.log(localStorage);
 
-      switch(gameMode){
-        case 'Easy':
-          document.getElementById("final").innerHTML = "Correct: " +
-          corGuesses + "/5 <br /> Accuracy: " + Math.floor((1 - guessCnt/15) * 100) + "%" 
-        break;
-
-        case 'Medium':
-          document.getElementById("final").innerHTML = "Correct: " +
-          corGuesses + "/5 <br /> Accuracy: " + Math.floor((1 - guessCnt/10) * 100) + "%" 
-        break;
         
-        case 'Hard':
-          document.getElementById("final").innerHTML = "Correct: " +
-          corGuesses + "/5 <br /> Accuracy: " + Math.floor((1 - guessCnt/5) * 100) + "%" 
-        break;
-      }
+      document.getElementById("final").innerHTML = "Correct: " +
+      corGuesses + "/5 <br /> Accuracy: " + (corGuesses/guessCnt * 100) + "%" 
+        
 
       const hintIcon = document.getElementById("hintIcon");
         if (hintIcon) {
@@ -88,7 +77,12 @@
       var buttonContainer1 = document.getElementById("retryButton");
       if (buttonContainer1) {
         buttonContainer1.addEventListener("click", function (e) {
-            window.location.href = '../2.Easy/EasyPage1.html'
+          if(gameMode == 'Easy'){
+            window.location.href = '../2.Easy/EasyPage1.html';
+          }else if (gameMode == 'Medium')
+            window.location.href = '../3.Medium/MediumPage.html';
+          else
+            window.location.href = '../4.Hard/HardPage.html';
         });
       }
       
