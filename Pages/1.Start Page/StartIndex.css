@@ -53,7 +53,8 @@
   
 }
 
+
 body{
-  background-color: url(cool.jpg);
+  background-image: url('cool.jpg');
   background-size: 100%;
 }
