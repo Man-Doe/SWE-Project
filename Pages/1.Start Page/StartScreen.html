@@ -12,11 +12,13 @@
     />
   </head>
   <body>
-    <div class="start-screen">
-      <div class="headingText">Registration Page</div>
-      <div class="textBox" id="usernameT-Box">Please Enter Name...</div>
-      <div class="button" id="submitUser">
-        <div class="buttonText">Register</div>
+    <div class="top-screen">
+      <div class="start-screen">
+        <div class="headingText">Registration Page</div>
+        <div class="textBox" id="usernameT-Box">Please Enter Name</div>
+        <div class="button" id="submitUser">
+          <button class="buttonText">Register</button>
+        </div>
       </div>
     </div>
 
@@ -24,9 +26,9 @@
       var buttonContainer = document.getElementById("submitUser");
       if (buttonContainer) {
         buttonContainer.addEventListener("click", function (e) {
-          window.location.href = '../2.MainPage/MainScreen.html'
+          window.location.href = "../2.MainPage/MainScreen.html";
         });
       }
-      </script>
+    </script>
   </body>
 </html>
