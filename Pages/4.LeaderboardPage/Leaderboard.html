@@ -13,34 +13,41 @@
   </head>
   <body>
     <div class="leaderboards">
-      <div class="headingText">Leaderboards</div>
-      <div class="button" id="soloBoard">
-        <div class="buttonText">Personal</div>
+      <div class="inner-leaderboard">
+        <div class="headingText">Leaderboards</div>
+        <div class="button" id="soloBoard">
+          <div class="buttonText">Personal</div>
+        </div>
+        <div class="button1" id="globalBoard">
+          <div class="buttonText">Global</div>
+        </div>
+        <div class="personal-leaderobard-here">Personal Leaderobard Here</div>
       </div>
-      <div class="button1" id="globalBoard">
-        <div class="buttonText">Global</div>
-      </div>
-      <div class="personal-leaderobard-here">Personal Leaderobard Here</div>
-      <img class="backButton" alt="" src="../../Assets/vector-1.svg" id="backButton" />
+      <img
+        class="backButton"
+        alt=""
+        src="../../Assets/vector-1.svg"
+        id="backButton"
+      />
     </div>
     <script>
-        var buttonContainer = document.getElementById("soloBoard");
-        if (buttonContainer) {
-          buttonContainer.addEventListener("click", function (e) {
-            // do a thing for displaying personal leaderboards
-          });
-        }
-        
-        var buttonContainer1 = document.getElementById("globalBoard");
-        if (buttonContainer1) {
-          buttonContainer1.addEventListener("click", function (e) {
-            // do a thing for displaying global leaderboards
-          });
-        }
-    var vector = document.getElementById("backButton");
+      var buttonContainer = document.getElementById("soloBoard");
+      if (buttonContainer) {
+        buttonContainer.addEventListener("click", function (e) {
+          // do a thing for displaying personal leaderboards
+        });
+      }
+
+      var buttonContainer1 = document.getElementById("globalBoard");
+      if (buttonContainer1) {
+        buttonContainer1.addEventListener("click", function (e) {
+          // do a thing for displaying global leaderboards
+        });
+      }
+      var vector = document.getElementById("backButton");
       if (vector) {
         vector.addEventListener("click", function (e) {
-            window.location.href = '../2.MainPage/MainScreen.html'
+          window.location.href = "../2.MainPage/MainScreen.html";
         });
       }
     </script>

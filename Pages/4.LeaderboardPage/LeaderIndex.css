@@ -1,9 +1,5 @@
 .headingText {
-    position: absolute;
-    top: 65px;
-    left: 263px;
     font-size: 35px;
-    display: inline-block;
     width: 248px;
     height: 45px;
   }
@@ -13,7 +9,7 @@
   }
   .button,
   .button1 {
-    position: absolute;
+    
     top: 459px;
     left: 78px;
     border-radius: var(--br-9xs);
@@ -33,7 +29,7 @@
     left: 511px;
   }
   .personal-leaderobard-here {
-    position: absolute;
+    
     top: 245px;
     left: 257px;
     font-size: var(--font-size-xl);
@@ -41,6 +37,19 @@
     width: 288px;
     height: 113px;
   }
+
+  .inner-leaderboard{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  gap: 50px;
+  padding-top: 20px;
+  }
+
+  
+
   .backButton {
     position: absolute;
     top: 33.69px;
@@ -49,15 +58,12 @@
     height: 65.62px;
     cursor: pointer;
   }
-  .leaderboards {
-    position: relative;
-    background-color: var(--color-white);
-    width: 100%;
-    height: 603px;
-    overflow: hidden;
-    text-align: center;
-    font-size: var(--font-size-11xl);
-    color: var(--color-black);
-    font-family: var(--font-inter);
+  
+  .backButton:hover{
+    filter: drop-shadow(0 0 8px black);           
+    filter: drop-shadow(0 0 0 8px black);   
   }
   
+  body{
+    background-color: azure;
+  }
