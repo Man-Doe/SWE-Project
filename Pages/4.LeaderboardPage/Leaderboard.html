@@ -12,29 +12,35 @@
     />
   </head>
   <body>
-    <div class="leaderboards">
+    <div class="foreground">
       <div class="headingText">Leaderboards</div>
-      <div class="button" id="soloBoard">
-        <div class="buttonText">Personal</div>
+      <button class="button1" id="soloBoard">Personal</button>
       </div>
-      <div class="button1" id="globalBoard">
-        <div class="buttonText">Global</div>
+      <button class="button2" id="globalBoard">Global</button>
       </div>
-      <div class="personal-leaderobard-here">Personal Leaderobard Here</div>
+      <div class="LeaderPlaceholder">Placeholder for a personal leaderboard and a global leaderboard
+        to be implemented in the final version of the prototype
+      </div>
       <img class="backButton" alt="" src="../../Assets/vector-1.svg" id="backButton" />
     </div>
     <script>
-        var buttonContainer = document.getElementById("soloBoard");
-        if (buttonContainer) {
-          buttonContainer.addEventListener("click", function (e) {
-            // do a thing for displaying personal leaderboards
+        var personalButton = document.getElementById("soloBoard");
+        if (personalButton) {
+          personalButton.addEventListener("click", function (e) {
+            e.target.innerHTML = "Coming Soon..."
+          });
+          personalButton.addEventListener("mouseout", function (e) {
+            e.target.innerHTML = "Personal"
           });
         }
         
-        var buttonContainer1 = document.getElementById("globalBoard");
-        if (buttonContainer1) {
-          buttonContainer1.addEventListener("click", function (e) {
-            // do a thing for displaying global leaderboards
+        var globalButton = document.getElementById("globalBoard");
+        if(globalButton){
+        globalButton.addEventListener("click", function (e) {
+            e.target.innerHTML = "Coming Soon..."
+          });
+          globalButton.addEventListener("mouseout", function (e) {
+            e.target.innerHTML = "Global"
           });
         }
     var vector = document.getElementById("backButton");
