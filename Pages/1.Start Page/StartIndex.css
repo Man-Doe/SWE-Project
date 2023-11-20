@@ -5,7 +5,6 @@
   font-size: 30px;
   width: 304px;
   height: 71px;
-  display: inline-block;
 }
 .textBox {
   position: absolute;
@@ -50,10 +49,4 @@
   font-size: var(--font-size-xl);
   color: var(--color-black);
   font-family: var(--font-inter);
-  
-}
-
-body{
-  background-color: url(cool.jpg);
-  background-size: 100%;
 }
