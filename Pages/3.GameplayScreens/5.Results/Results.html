@@ -13,24 +13,29 @@
   </head>
   <body>
     <div class="results">
-      <div class="headingText">Results</div>
-      <div class="button" id="submitUser">
-        <div class="buttonText">Register</div>
+      <div class="results-container">
+        <div class="headingText">Results</div>
+        <div class="button" id="submitUser">
+          <button class="buttonText">Register</button>
+        </div>
+        <div class="button1" id="retryButton">
+          <button class="buttonText">Play Again</button>
+        </div>
+        <div class="button2" id="chooseDifButton">
+          <button class="buttonText">Select Difficulty</button>
+        </div>
+        <div class="button3" id="leaderButton">
+          <button class="buttonText">Leaderboards</button>
+        </div>
+        <input
+          type="text"
+          id="usernameT-Box"
+          placeholder="Intended for User Input"
+        />
+        <div class="final-score">Final Score: #/# - ###%</div>
       </div>
-      <div class="button1" id="retryButton">
-        <div class="buttonText">Play Again</div>
-      </div>
-      <div class="button2" id="chooseDifButton">
-        <div class="buttonText">Select Difficulty</div>
-      </div>
-      <div class="button3" id="leaderButton">
-        <div class="buttonText">Leaderboards</div>
-      </div>
-      <div class="textBox" id="usernameT-Box">placeholder for user input</div>
-      <div class="final-score">final score: #/# - ###%</div>
       <img class="home-icon" alt="" src="../../../Assets/Home.svg" id="home" />
     </div>
-
     <script>
       var buttonContainer = document.getElementById("submitUser");
       if (buttonContainer) {
@@ -38,34 +43,34 @@
           // Please sync "Main Screen" to the project
         });
       }
-      
+
       var buttonContainer1 = document.getElementById("retryButton");
       if (buttonContainer1) {
         buttonContainer1.addEventListener("click", function (e) {
-            window.location.href = '../../2.MainPage/MainScreen.html'
+          window.location.href = "../../2.MainPage/MainScreen.html";
         });
       }
-      
+
       var buttonContainer2 = document.getElementById("chooseDifButton");
       if (buttonContainer2) {
         buttonContainer2.addEventListener("click", function (e) {
-            window.location.href = '../1.ChooseDif/Selection.html'
+          window.location.href = "../1.ChooseDif/Selection.html";
         });
       }
-      
+
       var buttonContainer3 = document.getElementById("leaderButton");
       if (buttonContainer3) {
         buttonContainer3.addEventListener("click", function (e) {
-            window.location.href = '../../4.LeaderboardPage/Leaderboard.html'
+          window.location.href = "../../4.LeaderboardPage/Leaderboard.html";
         });
       }
-      
+
       var home = document.getElementById("home");
       if (home) {
         home.addEventListener("click", function (e) {
-            window.location.href = '../../2.MainPage/MainScreen.html'
+          window.location.href = "../../2.MainPage/MainScreen.html";
         });
       }
-      </script>
+    </script>
   </body>
 </html>
