@@ -3,7 +3,7 @@ Readme:
 
 how to use:
 
-1. click register button to go to main menu (registering name will come tomorrow)
+1. go to page 1 folder, open up the html, and click register button to go to main menu (registering name will come soon)
 2. currerntly don't plan on doing too much regarding Settings and leaderboard
 	those will be features worked on in V2 of the prototype
 3. User can select one of three game modes: Easy, Medium, Hard: way they vary
