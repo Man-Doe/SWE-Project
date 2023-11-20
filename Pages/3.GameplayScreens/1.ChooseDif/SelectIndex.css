@@ -1,66 +1,66 @@
-.select-mode {
-    position: absolute;
-    top: 100px;
-    left: 275px;
-    font-size: 30px;
-    color: #000;
-    display: inline-block;
-    width: 241px;
-    height: 45px;
-  }
-.buttonText{
-  position: relative;
+.difficulty-selection{
+  width:500px;
+  margin: auto;
+  margin-top: 80px;
+  background-color: whitesmoke;
+  height: 400px;
+  border-radius: 15px;
 }
-  .button,
-  .button1,
-  .button2,
-  .button3 {
-    position: absolute;
-    top: 232px;
-    left: 310px;
-    border-radius: var(--br-9xs);
-    background-color: var(--color-limegreen);
-    width: 189px;
-    height: 47px;
-    display: flex;
-    justify-content:center;
-    flex-direction: row;
-    
-    padding: var(--padding-5xs) var(--padding-base);
-    box-sizing: border-box;
-    cursor: pointer;
-  }
-  .button1{
-    top: 312px;
-  }
-  .button2{
-    top: 392px;
-  }
-  .button3{
-    top: 472px;
-  }
-  
-  .backButton {
-    position: absolute;
-    top: 7.7px;
-    left: 7.37px;
-    width: 62.63px;
-    height: 61.61px;
-    cursor: pointer;
-  }
-  .difficulty-selection {
-    position: absolute;
-    top: 100px;
-    left: 25%;
-    background-color: var(--color-black);
-    width: 800px;
-    height: 600px;
-    overflow: hidden;
-    text-align: center;
-    align-items: center;
-    justify-content:center;
-    font-size: var(--font-size-xl);
-    color: var(--color-black);
-    font-family: var(--font-inter);
-  }
-  
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  height:300px;
+  color: black;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 20px;
+}
+
+.select-mode{
+  font-weight:bold;
+  font-size: 20px;
+}
+
+.button, .button1, .button2, .button3{
+  border-radius: 5px;
+  background-color:darkgreen;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  border: 2px solid black;
+  margin: 7px;
+}
+
+.button:hover{
+  background-color:greenyellow ;
+}
+
+.button1:hover{
+  background-color:greenyellow ;
+}
+
+.button2:hover{
+  background-color:greenyellow ;
+}
+
+.button3:hover{
+  background-color:greenyellow ;
+}
+
+img{
+  margin-top: 20px;
+}
+
+img:hover{
+  filter: drop-shadow(0 0 8px black);           
+  filter: drop-shadow(0 0 0 8px black);     
+}
+
+
+body{
+  background-image: url('cool.jpg');
+  background-size: 100%;
+}

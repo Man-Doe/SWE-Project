@@ -13,25 +13,27 @@
   </head>
   <body>
     <div class="difficulty-selection">
-      <div class="select-mode">select mode</div>
-      <div class="button" id="eButton">
-        <div class="buttonText">Easy</div>
+      <div class="container">
+        <div class="select-mode">Select Mode</div>
+        <div class="button" id="eButton">
+          <div class="buttonText">Easy</div>
+        </div>
+        <div class="button1" id="mButton">
+          <div class="buttonText">Medium</div>
+        </div>
+        <div class="button2" id="hButton">
+          <div class="buttonText">Hard</div>
+        </div>
+        <div class="button3" id="tempButton">
+          <div class="buttonText">tempResults</div>
+        </div>
+        <img
+          class="backButton"
+          alt=""
+          src="../../../Assets/vector-1.svg"
+          id="bButton"
+        />
       </div>
-      <div class="button1" id="mButton">
-        <div class="buttonText">Medium</div>
-      </div>
-      <div class="button2" id="hButton">
-        <div class="buttonText">Hard</div>
-      </div>
-      <div class="button3" id="tempButton">
-        <div class="buttonText">tempResults</div>
-      </div>
-      <img
-        class="backButton"
-        alt=""
-        src="../../../Assets/vector-1.svg"
-        id="bButton"
-      />
     </div>
 
     <script>
@@ -41,34 +43,32 @@
           // Please sync "Easy 1" to the project
         });
       }
-      
+
       var buttonContainer1 = document.getElementById("mButton");
       if (buttonContainer1) {
         buttonContainer1.addEventListener("click", function (e) {
           // Please sync "Meidum 1" to the project
         });
       }
-      
+
       var buttonContainer2 = document.getElementById("hButton");
       if (buttonContainer2) {
-        buttonContainer2.addEventListener("click", function (e) {
-          
-        });
+        buttonContainer2.addEventListener("click", function (e) {});
       }
 
       var buttonContainer2 = document.getElementById("tempButton");
       if (buttonContainer2) {
         buttonContainer2.addEventListener("click", function (e) {
-          window.location.href = '../5.Results/Results.html'
+          window.location.href = "../5.Results/Results.html";
         });
       }
-      
+
       var vector = document.getElementById("bButton");
       if (vector) {
         vector.addEventListener("click", function (e) {
-            window.location.href = '../../2.MainPage/MainScreen.html'
+          window.location.href = "../../2.MainPage/MainScreen.html";
         });
       }
-      </script>
+    </script>
   </body>
 </html>
