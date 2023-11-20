@@ -13,7 +13,7 @@ how to use:
 4. Upon Selection, User will be brought to game page and asked a series of 5 questions
 	- will try to at least 5 audio tracks and respective hints before submission tomorrow
 	- for the time being, user is given random selection of four numbers, guess the correct one
-		- open the console to see the correct answer
+		- open the console (ctrlv+ shft + I)to see the correct answer	
 5. after questions are submitted, user will be shown final score along with ability to
 	- register their score on their personal leaderboard
 	- Replay same difficulty
