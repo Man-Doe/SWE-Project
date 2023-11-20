@@ -1,7 +1,7 @@
-.select-mode {
+.headingText {
     position: absolute;
-    top: 100px;
-    left: 275px;
+    top: 150px;
+    left: 300px;
     font-size: 30px;
     color: #000;
     display: inline-block;
@@ -11,34 +11,31 @@
 .buttonText{
   position: relative;
 }
-  .button,
+
+
   .button1,
   .button2,
-  .button3 {
+  .button3,
+  .button4{
     position: absolute;
     top: 232px;
-    left: 310px;
-    border-radius: var(--br-9xs);
-    background-color: var(--color-limegreen);
+    left: 330px;
     width: 189px;
     height: 47px;
     display: flex;
-    justify-content:center;
-    flex-direction: row;
+    font-size: 20px;
     
     padding: var(--padding-5xs) var(--padding-base);
     box-sizing: border-box;
     cursor: pointer;
   }
-  .button1{
+  .button2{
     top: 312px;
   }
-  .button2{
+  .button3{
     top: 392px;
   }
-  .button3{
-    top: 472px;
-  }
+
   
   .backButton {
     position: absolute;
@@ -48,19 +45,5 @@
     height: 61.61px;
     cursor: pointer;
   }
-  .difficulty-selection {
-    position: absolute;
-    top: 100px;
-    left: 25%;
-    background-color: var(--color-black);
-    width: 800px;
-    height: 600px;
-    overflow: hidden;
-    text-align: center;
-    align-items: center;
-    justify-content:center;
-    font-size: var(--font-size-xl);
-    color: var(--color-black);
-    font-family: var(--font-inter);
-  }
+
   
