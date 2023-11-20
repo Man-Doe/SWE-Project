@@ -13,15 +13,17 @@
   </head>
   <body>
     <div class="main-screen">
-      <div class="headingText">BPM Rhythm Game UI Demonstration</div>
-      <div class="button" id="ChooseDifPage">
-        <div class="playGame">Play Game</div>
-      </div>
-      <div class="button2" id="leaderPage">
-        <div class="leaderboard">Leaderboards</div>
-      </div>
-      <div class="button1" id="settingsPage">
-        <div class="Settings">Settings</div>
+      <div class="main2">
+        <div class="headingText">BPM Rhythm Game UI Demonstration</div>
+        <div class="button" id="ChooseDifPage">
+          <div class="playGame">Play Game</div>
+        </div>
+        <div class="button2" id="leaderPage">
+          <div class="leaderboard">Leaderboards</div>
+        </div>
+        <div class="button1" id="settingsPage">
+          <div class="Settings">Settings</div>
+        </div>
       </div>
     </div>
 
@@ -29,24 +31,24 @@
       var buttonContainer = document.getElementById("ChooseDifPage");
       if (buttonContainer) {
         buttonContainer.addEventListener("click", function (e) {
-          window.location.href = '../3.GameplayScreens/1.ChooseDif/Selection.html'
+          window.location.href =
+            "../3.GameplayScreens/1.ChooseDif/Selection.html";
         });
       }
-      
+
       var buttonContainer1 = document.getElementById("leaderPage");
       if (buttonContainer1) {
         buttonContainer1.addEventListener("click", function (e) {
-          window.location.href = '../4.LeaderboardPage/Leaderboard.html'
-          
+          window.location.href = "../4.LeaderboardPage/Leaderboard.html";
         });
       }
-      
+
       var buttonContainer2 = document.getElementById("settingsPage");
       if (buttonContainer2) {
         buttonContainer2.addEventListener("click", function (e) {
-          window.location.href = '../5.SettingsPage/Settings.html'
+          window.location.href = "../5.SettingsPage/Settings.html";
         });
       }
-      </script>
+    </script>
   </body>
 </html>
