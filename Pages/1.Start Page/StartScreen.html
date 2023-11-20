@@ -20,9 +20,10 @@
     </div>
 
     <script>
-      var buttonContainer = document.getElementById("submitUser");
-      if (buttonContainer) {
-        buttonContainer.addEventListener("click", function (e) {
+      var submitUser = document.getElementById("submitUser");
+      if (submitUser) {
+        submitUser.addEventListener("click", function (e) {
+          localStorage.setItem("user-name", document.getElementById("usernameT-Box").value)
           window.location.href = '../2.MainPage/MainScreen.html'
         });
       }

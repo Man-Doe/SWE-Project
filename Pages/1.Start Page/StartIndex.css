@@ -12,10 +12,10 @@
 }
 .button1 {
   position: absolute;
-  top: 310px;
+  top: 307px;
   left: 500px;
   width: 98px;
-  height: 39px;
+  height: 42px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,11 +27,11 @@
 
 .textBox{
   position: absolute;
-  left: 295px;
-  top: 325px;
-  font-size: 15px;
+  left: 250px;
+  top: 305px;
+  font-size: 18px;
   text-align: left;
-  width: 180px;
+  width: 200px;
   height: 7px;
   display: flex;
   align-items: center;
