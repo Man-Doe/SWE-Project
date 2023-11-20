@@ -1,6 +1,6 @@
 .headingText {
     position: absolute;
-    top: 140px;
+    top: 180px;
     left: 300px;
     font-size: 35px;
     width: 248px;
@@ -32,11 +32,11 @@
     position: absolute;
     top: 280px;
     left: 280px;
-    font-size: var(--font-size-xl);
-    display: flex;
+    font-size: 16px;
+    display: block;
     width: 288px;
-    height: 100px;
     text-align: center;
+    align-items: center;
     font-style: italic;
     color: rgb(0, 0, 0);
     display: block;
@@ -45,12 +45,6 @@
     padding: 10px;
     box-shadow: 0 0 20px #11b3a6;
     align-self: center;
-  }
-  .backButton {
-    position: absolute;
-    top: 33.69px;
-    left: 32.36px;
-    width: 68.64px;
-    height: 65.62px;
-    cursor: pointer;
+    font-family: Novem;
+    line-height: 20px;
   }

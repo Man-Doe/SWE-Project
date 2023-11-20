@@ -1,27 +1,19 @@
 .headingText {
     position: absolute;
-    top: 75px;
-    left: 267px;
+    top: 160px;
+    left: 290px;
     font-size: 40px;
     display: inline-block;
     width: 269px;
   }
-  .backButton {
-    position: absolute;
-    top: 42.69px;
-    left: 32.36px;
-    width: 68.64px;
-    height: 65.62px;
-    cursor: pointer;
-  }
+
   .dropdown-placeholder,
   .slider-placeholder-here {
     position: absolute;
-    top: 219px;
-    left: 300px;
+    top: 270px;
+    left: 315px;
     display: inline-block;
     width: 200px;
-    height: 40px;
     font-style: italic;
     color: rgb(0, 0, 0);
     display: block;
@@ -35,6 +27,6 @@
 
 
   .dropdown-placeholder {
-    top: 409px;
+    top: 400px;
   }
   

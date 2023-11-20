@@ -1,8 +1,8 @@
 .headingText {
     position: absolute;
     top: 150px;
-    left: 300px;
-    font-size: 30px;
+    left: 305px;
+    font-size: 35px;
     color: #000;
     display: inline-block;
     width: 241px;
@@ -17,7 +17,7 @@
   .button3,
   .button4{
     position: absolute;
-    top: 232px;
+    top: 250px;
     left: 330px;
     width: 189px;
     height: 47px;
@@ -29,20 +29,12 @@
     cursor: pointer;
   }
   .button2{
-    top: 312px;
+    top: 325px;
   }
   .button3{
-    top: 392px;
+    top: 400px;
   }
 
   
-  .backButton {
-    position: absolute;
-    top: 7.7px;
-    left: 7.37px;
-    width: 62.63px;
-    height: 61.61px;
-    cursor: pointer;
-  }
 
   

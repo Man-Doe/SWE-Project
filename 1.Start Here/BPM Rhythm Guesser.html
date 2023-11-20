@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="../../global.css" />
-    <link rel="stylesheet" href="./StartIndex.css" />
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="./BPMIndex.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
@@ -23,8 +23,11 @@
       var submitUser = document.getElementById("submitUser");
       if (submitUser) {
         submitUser.addEventListener("click", function (e) {
-          localStorage.setItem("user-name", document.getElementById("usernameT-Box").value)
-          window.location.href = '../2.MainPage/MainScreen.html'
+          if(document.getElementById("usernameT-Box").value == '')
+            localStorage.setItem("user-name", "Guest")
+          else
+            localStorage.setItem("user-name", document.getElementById("usernameT-Box").value)
+          window.location.href = '../Pages/2.MainPage/MainScreen.html'
         });
       }
       </script>

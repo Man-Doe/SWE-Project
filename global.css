@@ -14,7 +14,11 @@ body {
     background: url(./Assets/cool2.gif);
     background-repeat: no-repeat;
     color: var(--color-white);
-    font-family: var(--font-inter);
+    font-family: Novem;
+  }
+
+  .headingText{
+    font-family: Novem;
   }
 
   .button1,
@@ -40,7 +44,7 @@ body {
     text-align: center;
     justify-content: center;
     font-size: 18px;
-    font-family: var(--font-inter);
+    font-family: Novem;;
   }
 
   .button1:hover,
@@ -51,6 +55,25 @@ body {
     color: #fff;
     text-decoration:none;
   }
+
+  .backButton {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+  }
+
+  .nextArrow {
+    position: absolute;
+    top: 550.69px;
+    left: 770.36px;
+    width: 68.64px;
+    height: 65.62px;
+    cursor: pointer;
+  }
+
   
   :root {
     /* fonts */
@@ -75,3 +98,7 @@ body {
     
   }
   
+  @font-face {
+    font-family: Novem;
+    src: url(./Fonts/novem___.ttf);
+  }

@@ -19,7 +19,7 @@
   .headingText {
     position: absolute;
     top: 173px;
-    left: 290px;
+    left: 300px;
     font-size: 45px;
     color: #000;
     display: inline-block;
@@ -28,17 +28,18 @@
   }
   .hintIcon{
     position: absolute;
-    top: 173px;
-    left: 498px;
-    width: 30px;
-    height: 40px;
+    top: 150px;
+    left: 500px;
+    width: 40px;
+    height: 50px;
   }
 
   .guessText{
     position: absolute;
     top: 10px;
     left: 0px;
-    font-size: 18px
+    font-size: 18px;
+    font-family: Novem;
   }
 
 .infoText{
@@ -55,7 +56,7 @@
   background-color: #4b01f693;
   border-radius: var(--br-9xs);
   padding: var(--padding-5xs) var(--padding-base);
-  box-shadow: 0 0 20px #ffffff;
+  box-shadow: 0 0 20px #11b3a6;
   box-sizing: border-box;
   
 }
@@ -89,14 +90,6 @@
     cursor: pointer;
   }
 
-  .nextArrow {
-    position: absolute;
-    top: 550.69px;
-    left: 750.36px;
-    width: 68.64px;
-    height: 65.62px;
-    cursor: pointer;
-  }
 
 
 

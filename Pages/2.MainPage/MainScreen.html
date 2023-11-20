@@ -13,14 +13,23 @@
   </head>
   <body>
     <div class="foreground">
-      <div class="headingText">BPM Rhythm Game UI Demonstration</div>
+      <div class="headingText">BPM Rhythm Guesser</div>
       <button class="button1" id="ChooseDifPage">Play Game</button>
       <button class="button2" id="leaderPage">Leaderboards</button>
       <button class="button3" id="settingsPage">Settings</button>
+      <form action="https://www.deviantart.com/king-lulu-deer/gallery" method="get" target="_blank">
+        <button class="button4" type="submit">Art By: King-Lulu-Deer</button>
+      </form>
+      <div class="infoText" id="welcomeUser"> Welcome: Guest!
       </div>
     </div>
 
     <script>
+
+      console.log(localStorage.getItem('user-name'))
+
+      document.getElementById("welcomeUser").innerHTML = "Welcome: " + localStorage.getItem('user-name') + '!'
+
       var buttonContainer = document.getElementById("ChooseDifPage");
       if (buttonContainer) {
         buttonContainer.addEventListener("click", function (e) {

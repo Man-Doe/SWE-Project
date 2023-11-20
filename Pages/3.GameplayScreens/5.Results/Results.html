@@ -26,7 +26,7 @@
       <label class="boxLabel" for="text-Box"">Enter Name:</label>
         <input class="textBox" type="text" id="textBox" name=""></input>
       <div class="final-score" id="final">Correct: #/5, Accuracy: ###%</div>
-      <img class="home-icon" alt="" src="../../../Assets/Home.svg" id="home" />
+      <img class="home-icon" alt="" src="../../../Assets/Home-Icon.svg" id="home" />
       <div class="infoText" id="hintPHolder" style="display: none;"> user in final version will be able
         to enter a username and have it recorded to their personal leadberboard
       </div>
@@ -42,7 +42,7 @@
 
         
       document.getElementById("final").innerHTML = "Correct: " +
-      corGuesses + "/5 <br /> Accuracy: " + (corGuesses/guessCnt * 100) + "%" 
+      corGuesses + "/5 <br /> Accuracy: " + (corGuesses/guessCnt * 100).toFixed(2) + "%" 
         
 
       const hintIcon = document.getElementById("hintIcon");
