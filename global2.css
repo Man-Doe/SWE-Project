@@ -1,0 +1,103 @@
+html { 
+  background: url(./Assets/cool2.gif) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  align-items: center;
+  text-align: center;
+  font-family: Novem;
+}
+
+
+  .foreground{
+    align-items: center;
+    text-align: center;
+    width: 850px;
+    height:625px;
+    background: url(./Assets/cool2.gif);
+    background-repeat: no-repeat;
+    color: var(--color-white);
+    font-family: Novem;
+  }
+
+  .button1,
+  .button2,
+  .button3,
+  .button4 {
+    background-image: linear-gradient(to right, #314755 0%, #26a0da  51%, #314755  100%);
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: var(--br-9xs);
+    display: block;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-5xs) var(--padding-base);
+    box-sizing: border-box;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-family: Novem;;
+  }
+
+  .button1:hover,
+  .button2:hover,
+  .button3:hover,
+  .button4:hover{
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration:none;
+  }
+
+  .backButton {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+  }
+
+  .nextArrow {
+    position: absolute;
+    top: 550.69px;
+    left: 770.36px;
+    width: 68.64px;
+    height: 65.62px;
+    cursor: pointer;
+  }
+
+  
+  :root {
+    /* fonts */
+    --font-inter: Inter;
+  
+    /* font sizes */
+    --font-size-xl: 20px;
+    --font-size-4xl: 23px;
+
+    /* Colors */
+    --color-white: #fff;
+    --color-black: #000;
+    --color-limegreen: #35c132;
+    --color-gray: #939393;
+      
+      /* Paddings */
+      --padding-5xs: 8px;
+      --padding-base: 16px;
+    
+      /* Border radiuses */
+      --br-9xs: 8px;
+    
+  }
+  
+  @font-face {
+    font-family: Novem;
+    src: url(./Fonts/novem___.ttf);
+  }
+
+  @media only screen and (max-width: 1536px){
+  }
