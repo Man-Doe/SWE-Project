@@ -36,7 +36,7 @@
     </div>
 
     <script>
-      var right_answer = Math.floor(Math.random() * 4) + 1;
+      var right_button = Math.floor(Math.random() * 4) + 1;
       var bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60;
       var correct_guesses = 0;
       var question_num = 1;
@@ -47,7 +47,7 @@
 
       function showCorrect(){
         toggleButtons(true)
-          switch (right_answer){
+          switch (right_button){
             case 1:
             document.getElementById("option-1").innerHTML = "This One!";
               break;
@@ -71,7 +71,7 @@
         option_4.disabled = t_f;
       }
 
-      switch (right_answer){
+      switch (right_button){
             case 1:
               document.getElementById("option-1").innerHTML = bpm_ans;
               document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
@@ -215,11 +215,11 @@
       var nextButton = document.getElementById("nextArr");
       if (nextButton) {
         nextButton.addEventListener("click", function (e) {
-          right_answer = Math.floor(Math.random() * 4) + 1;
+          right_button = Math.floor(Math.random() * 4) + 1;
           bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60;;
           toggleButtons(false);
           console.log(bpm_ans)
-          switch (right_answer){
+          switch (right_button){
             case 1:
               document.getElementById("option-1").innerHTML = bpm_ans;
               document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
@@ -250,7 +250,7 @@
               
               break;
           }
-
+          
           question_num++;
           if (question_num > 5){
             localStorage.setItem('total-guesses', numGuesses);
