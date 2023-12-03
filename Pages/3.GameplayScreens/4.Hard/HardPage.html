@@ -35,9 +35,38 @@
       var question_num = 1;
       var numGuesses = 0;
 
-      console.log(bpm_ans);
+      function isCorrect(subButton){
+        
+        subButton.addEventListener("click", function (e) {
+            numGuesses++;
+            if(/^[a-z0-9]+$/i.test(e.target.value) == true){
+              document.getElementById("textBox").value = null;
+              document.getElementById('textBox').placeholder = 'must be a number!'
+            }else if(e.target.value < 60 || e.target.value > 144){
+              document.getElementById("textBox").value = null;
+              document.getElementById('textBox').placeholder = 'must be value betwen 60-144!'
+            }else if(document.getElementById('textBox').value == bpm_ans){
+              correct_guesses++;
+              e.target.innerHTML = "Correct!"
+              document.getElementById("guessCount").innerHTML =
+              "Correct Guesses " + correct_guesses;
+              document.getElementById("nextArr").removeAttribute("hidden");
+              subButton.disabled = true;
+            }else{
+              e.target.innerHTML = "Answer: " + bpm_ans;
+              document.getElementById("nextArr").removeAttribute("hidden");
+              subButton.disabled = true;
+            }
+
+            
+            
+          });
+        }
 
       const toggleMusic = document.getElementById("toggleMusic");
+      const submitAns = document.getElementById("submitAns");
+      const nextButton = document.getElementById("nextArr");
+
       if (toggleMusic) {
         toggleMusic.addEventListener("mouseover", function (e) {
             document.getElementById("hintPHolder").style.display = 'block';
@@ -48,38 +77,25 @@
 
       }
 
-      var submitAns = document.getElementById("submitAns");
       if (submitAns) {
-        submitAns.addEventListener("click", function (e) {
-          numGuesses++;
-          if(document.getElementById('textBox').value == bpm_ans){
-            correct_guesses++;
-            e.target.innerHTML = "Correct!"
-            document.getElementById("guessCount").innerHTML =
-            "Correct Guesses " + correct_guesses;
-          }else
-          e.target.innerHTML = "Answer: " + bpm_ans;
-          
-
-          submitAns.disabled = true;
-          document.getElementById("nextArr").removeAttribute("hidden");
-        });
-        
+        isCorrect(submitAns);
       }
 
-      var nextButton = document.getElementById("nextArr");
+      
       if (nextButton) {
         nextButton.addEventListener("click", function (e) {
           bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60;
-          console.log(bpm_ans)
           submitAns.disabled = false;
-          question_num++;
-          if (question_num > 5){
+          if (question_num + 1 > 5){
+            
             localStorage.setItem('total-guesses', numGuesses);
             localStorage.setItem('correct-guesses', correct_guesses);
             localStorage.setItem('game-mode', document.getElementById('gamemode').innerHTML)
             window.location.href = '../5.Results/Results.html'
+          
           } else {
+
+            question_num++;
             submitAns.innerHTML = "Submit"
             document.getElementById("textBox").value = null;
             document.getElementById("header").innerHTML = "Song " + question_num + "/5";

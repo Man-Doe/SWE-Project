@@ -14,16 +14,12 @@
     <div class="foreground">
       <div class="modeIndicator">
         <div class="buttonText" id="gamemode">Medium</div>
-      </div>
+        </div>
       <div class="headingText" id="header">Song 1/5</div>
-      <button class="button1" id="option-1">Opt 1</button>
-      </div>
-      <button class="button2" id="option-2">Opt 2</button>
-      </div>
-      <button class="button3" id="option-3">Opt 3</button>
-      </div>
-      <button class="button4" id="option-4">Opt 4</button>
-      </div>
+      <button class="button1" id="option-1" value="1">Opt 1</button>
+      <button class="button2" id="option-2" value="2">Opt 2</button>
+      <button class="button3" id="option-3" value="3">Opt 3</button>
+      <button class="button4" id="option-4" value="4">Opt 4</button>
       <div class="guessText" id="guessCount">Guesses Left: 2 Total: 0</div>
       <div class="infoText" id="hintPHolder" style="display: none;"> This serves as a
       note for the user to know that music has yet to be implemented, for now, just try to guess
@@ -35,34 +31,35 @@
     </div>
 
     <script>
-      var right_answer = Math.floor(Math.random() * 4) + 1;
-      var bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60;
+      var right_button;
+      var bpm_ans;
       var correct_guesses = 0;
       var question_num = 1;
       var guessesLeft = 2;
       var numGuesses = 0;
 
-      console.log(bpm_ans);
 
-      function showCorrect(){
+      /*function revealAns():
+        - turns off all buttons before hand
+        - searches through the buttons to see which buttons' option 
+        string matches the correct answer
+        -reveals the next question arrow
+      */
+      function revealAns(){
+        var arr = [option_1, option_2,option_3,option_4]
+        
         toggleButtons(true)
-          switch (right_answer){
-            case 1:
-            document.getElementById("option-1").innerHTML = "This One!";
-              break;
-            case 2:
-            document.getElementById("option-2").innerHTML = "This One!";
-              break;
-            case 3:
-            document.getElementById("option-3").innerHTML = "This One!";
-              break;
-            case 4:
-            document.getElementById("option-4").innerHTML = "This One!";
-              break;
-          }
-          document.getElementById("nextArr").removeAttribute("hidden");
+
+        var found = arr.find((element) => 
+        document.getElementById(element.getAttribute('id')).innerHTML == bpm_ans);
+        
+        document.getElementById(found.getAttribute('id')).innerHTML = "This One!";
+        document.getElementById("nextArr").removeAttribute("hidden");
         }
 
+      /*function toggleButtons(t_f):void
+        enables/disables all buttons at the same time
+      */
       function toggleButtons(t_f){
         option_1.disabled = t_f;
         option_2.disabled = t_f
@@ -70,39 +67,61 @@
         option_4.disabled = t_f;
       }
 
-      switch (right_answer){
-            case 1:
-              document.getElementById("option-1").innerHTML = bpm_ans;
-              document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              
-              //Math.floor(Math.random()* 144) + 60
-            break;
-            case 2:
-              document.getElementById("option-2").innerHTML = bpm_ans;
-              document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              
-            break;
-            case 3:
-              document.getElementById("option-3").innerHTML = bpm_ans;
-              document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60
-              document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              
-              break;
-            case 4:
-              document.getElementById("option-4").innerHTML = bpm_ans;
-              document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              
-              break;
+      function setCorrectAns(){
+        var arr = [option_1, option_2, option_3, option_4]
+
+        right_button = Math.floor(Math.random() * 4) + 1;
+        bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60; 
+        
+        var found = arr.find((element) => 
+        document.getElementById(element.getAttribute('id')).value == right_button);
+        document.getElementById(found.getAttribute('id')).innerHTML = bpm_ans;
+
+        if(option_1 != found)
+          document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+  
+        if(option_2 != found)
+          document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+        
+        if(option_3 != found)
+          document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+
+        if(option_4 != found)
+          document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+        
+        console.log(bpm_ans)
+      }
+
+      function isCorrect(optButton){
+        optButton.addEventListener("click", function (e) {
+          numGuesses++;
+          guessesLeft--;
+          if(e.target.innerHTML == bpm_ans){
+            toggleButtons(true);
+            correct_guesses++;
+            document.getElementById(optButton.getAttribute('id')).innerHTML = "Correct!";
+            document.getElementById("nextArr").removeAttribute("hidden");
+          }else{
+            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
+              + ' Total:' + numGuesses;
+            optButton.innerHTML = "Wrong!";
+            if (guessesLeft == 0)
+              revealAns();
+
           }
+          optButton.disabled = true; 
+        });
+      }
 
       const toggleMusic = document.getElementById("toggleMusic");
+      const option_1 = document.getElementById("option-1");
+      const option_2 = document.getElementById("option-2");
+      const option_3 = document.getElementById("option-3");
+      const option_4 = document.getElementById("option-4");
+      const nextButton = document.getElementById("nextArr");
+
+      setCorrectAns();
+
       if (toggleMusic) {
         toggleMusic.addEventListener("mouseover", function (e) {
             document.getElementById("hintPHolder").style.display = 'block';
@@ -110,152 +129,43 @@
         toggleMusic.addEventListener("mouseout", function (e) {
             document.getElementById("hintPHolder").style.display = 'none';
         }); 
-
       }
 
+      if (option_1) 
+       isCorrect(option_1)
 
-      const option_1 = document.getElementById("option-1");
-      if (option_1) {
-        option_1.addEventListener("click", function (e) {
-          numGuesses++;
-          guessesLeft--;
-          if(e.target.innerHTML == bpm_ans){
-            toggleButtons(true);
-            correct_guesses++;
-            document.getElementById("option-1").innerHTML = "Correct!";
-            document.getElementById("nextArr").removeAttribute("hidden");
-          }else{
-            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
-              + ' Total:' + numGuesses;
-            option_1.innerHTML = "Wrong!";
-            if (guessesLeft == 0)
-              showCorrect();
+      if(option_2)
+        isCorrect(option_2)
 
-          }
-          option_1.disabled = true; 
-        });
-      }
+      if (option_3) 
+        isCorrect(option_3)
 
-      const option_2 = document.getElementById("option-2");
-      if (option_2) {
-        option_2.addEventListener("click", function (e) {
-          numGuesses++;
-          guessesLeft--;
-          if(e.target.innerHTML == bpm_ans){
-            toggleButtons(true);
-            correct_guesses++;
-            document.getElementById("option-2").innerHTML = "Correct!";
-            document.getElementById("nextArr").removeAttribute("hidden");
-          }else{
-            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
-              + ' Total:' + numGuesses;
-            option_2.innerHTML = "Wrong!";
-            if (guessesLeft == 0) showCorrect();
-            
-          }
-          option_2.disabled = true;
-        });
-      }
+      if (option_4) 
+        isCorrect(option_4)
 
-      const option_3 = document.getElementById("option-3");
-      if (option_3) {
-        option_3.addEventListener("click", function (e) {
-          numGuesses++;
-          guessesLeft--;
-          if(e.target.innerHTML == bpm_ans){
-            toggleButtons(true);
-            correct_guesses++;
-            document.getElementById("option-3").innerHTML = "Correct!";
-            document.getElementById("nextArr").removeAttribute("hidden");
-          }else{
-            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
-              + ' Total:' + numGuesses;
-            option_3.innerHTML = "Wrong!";
-            if (guessesLeft == 0) showCorrect();
-        }
-        option_3.disabled = true;
-      });
-      }
-
-      const option_4 = document.getElementById("option-4");
-      
-      if (option_4) {
-        option_4.addEventListener("click", function (e) {
-          numGuesses++;
-          guessesLeft--;
-          if(e.target.innerHTML == bpm_ans){
-            toggleButtons(true);
-            correct_guesses++;
-            document.getElementById("option-4").innerHTML = "Correct!";
-            document.getElementById("nextArr").removeAttribute("hidden");
-          }else{
-            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
-              + ' Total:' + numGuesses;
-            option_4.innerHTML = "Wrong!";
-            if (guessesLeft == 0) showCorrect();
-
-          }
-          option_4.disabled = true;
-        });
-      }
-
-      var nextButton = document.getElementById("nextArr");
       if (nextButton) {
         nextButton.addEventListener("click", function (e) {
-          right_answer = Math.floor(Math.random() * 4) + 1;
-          bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60;;
-          toggleButtons(false);
-          console.log(bpm_ans)
-          switch (right_answer){
-            case 1:
-              document.getElementById("option-1").innerHTML = bpm_ans;
-              document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-
-              //Math.floor(Math.random()* 144) + 60
-            break;
-            case 2:
-              document.getElementById("option-2").innerHTML = bpm_ans;
-              document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              
-            break;
-            case 3:
-              document.getElementById("option-3").innerHTML = bpm_ans;
-              document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              
-              break;
-            case 4:
-              document.getElementById("option-4").innerHTML = bpm_ans;
-              document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-              
-              break;
-          }
-
-          question_num++;
-          if (question_num > 5){
+          if (question_num + 1 > 5){
+           
             localStorage.setItem('total-guesses', numGuesses);
             localStorage.setItem('correct-guesses', correct_guesses);
             localStorage.setItem('game-mode', document.getElementById('gamemode').innerHTML)
             window.location.href = '../5.Results/Results.html'
+            
           } else {
+            
+            setCorrectAns();
+            toggleButtons(false);
+            question_num++;
             guessesLeft = 2;
+            
             document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
-            + ' Total: ' + numGuesses + " Correct: " + correct_guesses;
+            + ' Total:' + numGuesses + " Correct: " + correct_guesses;
             document.getElementById("header").innerHTML = "Song " + question_num + "/5";
             document.getElementById("nextArr").setAttribute("hidden", "hidden");
           }
         });
       }
-      
-      
     </script>
 </body>
-
 </html>
