@@ -1,0 +1,2 @@
+Song(id: INTEGER PRIMARY KEY, relPath: VARCHAR(255), bpm: INTEGER, hint: VARCHAR(255))
+Leaderboard(username VARCHAR(255), accuracy  DOUBLE)

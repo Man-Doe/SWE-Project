@@ -1,162 +1,123 @@
-//PLACEHOLDER version
-var Game = function () {
-    var currentRound;
-    var currentQuestion;
-    var guessAmount;
-    var guessCorrect;
-    var guessLimit;
-    var guessRemaining;
-    var questionRemaning;
+function Game () {
+    const RandFunctions = require("./RandFunctions");
+    const Database = require("./Database");
+    const randInstance = RandFunctions();
+    const databaseInstance = Database();
+    var currentRound = 0;
+    var currentQuestion = null;
+    var guessAmount = 0;
+    var guessCorrect = 0;
+    var guessLimit = 0;
+    var guessRemaining = 0;
+    var questionRemaning = 0;
+    var difficulty = 0;
+    
     
     const nextQuestion = function () {
-        currentQuestion.pauseAudioClip();
-        currentQuestion = undefined;
+        currentQuestion = null;
         if (questionRemaning.length != 0) {
             currentQuestion = questionRemaning.pop();
         }
     }
     
-    const Question = function (audioRelativePath, bpmInput, choiceArrayInput, correctChoiceInput, hintArrayInput) {
-        const audioClip = new Audio(audioRelativePath);
-        const bpm = bpmInput;
-        const choiceArray = choiceArrayInput;
-        const correctChoice = correctChoiceInput;
-        const hintArray = hintArrayInput;
-        return Object.freeze( {
-                playAudioClip: function () {
-                    audioClip.play();
-                    return;
-                },
-                pauseAudioClip: function() {
-                    audioClip.pause();
-                    return;
-                },
-                loadAudioClip: function() {
-                    audioClip.load();
-                    return;
-                },
-                isCorrectChoice: function (choiceInput) {
-                    return choiceInput === correctChoice;
-                },
-                isCorrectBpm: function (bpmInput) {
-                    return bpm === bpmInput;
-                },
-                getChoiceText: function (choiceInput) {
-                    if (!(choiceInput >= 1 && choiceInput <= choiceArrayInput.length)) {throw {message: "Out of Range"}};
-                    return choiceArray[choiceInput-1];
-                },
-                getCorrectBPM: function () {
-                    return bpm;
-                },
-                getCorrectChoice: function () {
-                    return correctChoice;
-                },
-                getNextHintText: function () {
-                    return hintArray[0];
-                }
-            }
-        );
-    };
-
-
     return Object.freeze (  {
-            startNewGame: function (numberOfQuestions, guessLimitInput) {
+            startNewGame: async function (numberOfQuestions, guessLimitInput, gameType) {
                 currentRound = 1;
-                currentQuestion = Question("../audio/just-relax-11157.mp3", "85", ["85 BPM", "120 BPM", "60 BPM", "30 BPM"], 1, ["placeholder hint"]); 
-                guessAmount = 0;
                 guessLimit = guessLimitInput;
                 guessRemaining = guessLimit;
+                guessAmount = 0;
                 guessCorrect = 0;
-
-                questionRemaning = [Question("../audio/just-relax-11157.mp3", "40", ["30 BPM", "20 BPM", "40 BPM", "50 BPM"], 3, ["Placeholder text"]),
-                                    Question("../audio/just-relax-11157.mp3", "50", ["70 BPM", "50 BPM", "60 BPM", "80 BPM"], 2, ["Placeholder text"]),
-                                    Question("../audio/just-relax-11157.mp3", "70", ["90 BPM", "80 BPM", "100 BPM", "70 BPM"], 4, ["Placeholder text"]),
-                                    Question("../audio/just-relax-11157.mp3", "30", ["20 BPM", "40 BPM", "30 BPM", "10 BPM"], 3, ["Placeholder text"])];
+                difficulty = gameType;
+                var idList  = randInstance.generateListRandom(1, await databaseInstance.count(), numberOfQuestions);
+                questionRemaning = [];
+                if (guessLimitInput < 0 || difficulty > 3 || difficulty <= 0 || numberOfQuestions < 1) {throw {message:"Invalid input"};}
+                currentQuestion = await databaseInstance.getQuestion(idList.pop()); 
+                for (var i = 0; i < numberOfQuestions - 1; i++) {
+                    questionRemaning[i] = await databaseInstance.getQuestion(idList.pop());
+                }
                 return;
             },
-            hasGameEnded: function () {
-                return (currentQuestion === undefined);
-            }, 
             answerChoiceQuestion: function (choiceInput) {
+                if (currentQuestion === null) {throw {message:"No questions to answer"};}
                 var isCorrect = currentQuestion.isCorrectChoice(choiceInput);
+                var correctChoice = null;
                 guessRemaining -= 1;
                 guessAmount += 1;
                 if (isCorrect || guessRemaining <= 0) {
+                    correctChoice = currentQuestion.getCorrectChoice();
                     if (isCorrect) {guessCorrect += 1};
                     nextQuestion();
                     currentRound += 1;
                     guessRemaining = guessLimit;
                 }
-                return isCorrect;
+                return ({
+                    "isCorrect": isCorrect,
+                    "correctChoice": correctChoice
+                });
             },
             answerOpenQuestion: function (bpmInput) {
+                if (currentQuestion === null) {throw {message:"No questions to answer"};}
                 var isCorrect = currentQuestion.isCorrectBpm(bpmInput);
+                var correctBPM = null;
                 guessRemaining -= 1;
                 guessAmount += 1;
                 if (isCorrect || guessRemaining <= 0) {
+                    correctBPM = currentQuestion.getCorrectBPM();
                     if (isCorrect) {guessCorrect += 1};
                     nextQuestion();
                     currentRound += 1;
                     guessRemaining = guessLimit;
                 }
-                return isCorrect;
+                return ({
+                    "isCorrect": isCorrect,
+                    "BPM": correctBPM
+                });
             },
-            recordOnLeaderBoard: function (userName) {
-                return;
-            },
-            getLeaderBoardRankAccuracy: function (rankInput) {
-                return "82.2%";
-            },
-            getLeaderBoardRankUserName: function (rankInput) {
-                return "Some username";
-            },
-            getChoiceText: function (choiceInput) {
-                return currentQuestion.getChoiceText(choiceInput);
-            },
-            getNextHintText: function () {
-                return currentQuestion.getNextHintText();
-            },
-            getCorrectChoice: function () {
-                return currentQuestion.getCorrectChoice();
-            },
-            getCorrectBPM: function () {
-                return currentQuestion.getCorrectBPM();
+            getAudioPath:function () {
+                return currentQuestion.getAudioRelativePath();
             },
             getAccuracyPercentage: function () {
+                if (guessAmount == 0) return 0;
                 return (guessCorrect/guessAmount)*100;
+            },           
+            getData: function() {
+                var hintInput = currentQuestion.getNextHintText();
+                var accuracy = this.getAccuracyPercentage();
+                var hasGameEnded = (currentQuestion === null);
+                if (difficulty != 1) {
+                    hintInput = null;
+                }
+                return {
+                    "choice1": currentQuestion.getChoice(1),
+                    "choice2": currentQuestion.getChoice(2),
+                    "choice3": currentQuestion.getChoice(3),
+                    "choice4": currentQuestion.getChoice(4),
+                    "hint": hintInput, 
+                    "accuracyPercentage": accuracy,
+                    "currentRound": currentRound,
+                    "guessRemaning": guessRemaining,
+                    "guessAmount": guessAmount,
+                    "guessCorrect": guessCorrect,
+                    "hasGameEnded": hasGameEnded
+                };
             },
-            getCurrentRound: function() {
-                return currentRound;
+            getLeaderboardCount: async function() {
+                return new Promise((resolve) => {
+                    resolve(databaseInstance.getLeaderboardCount());
+                });
             },
-            getGuessRemaning: function() {
-                return guessRemaining;
-            },
-            getGuessAmount: function() {
-                return guessAmount;
-            },
-            getGuessCorrect: function() {
-                return guessCorrect;
-            },
-            playAudioClip: function () {
-                currentQuestion.playAudioClip();
+            getLeaderboardRank: async function(rank) {
+                return new Promise((resolve) => {
+                    resolve(databaseInstance.getLeaderboardRank(rank));
+                });
+            },  
+            recordOnLeaderBoard: async function (userName) {
+                if (currentQuestion != null) throw {message:"The game is not over yet"};
+                await databaseInstance.insertIntoLeaderboard(userName, this.getAccuracyPercentage());
                 return;
             },
-            pauseAudioClip: function () {
-                currentQuestion.pauseAudioClip();
-                return;
-            },
-            loadAudioClip: function() {
-                currentQuestion.loadAudioClip();
-                return;
-            }
         }
     );
 };
 
-something = Game();
-something.startNewGame(5, 2);
-document.writeln("wow");
-document.writeln(something.answerChoiceQuestion(1));
-document.writeln(something.answerChoiceQuestion(2));
-document.writeln(something.answerChoiceQuestion(3));
-something.playAudioClip();
+module.exports = Game;

@@ -7,25 +7,20 @@ const Question = function (audioRelativePathInput, bpmInput, hintInput) {
     const bpm = bpmInput;
     const hint = hintInput;
     var choiceArray;
+
     do {
         choiceArray = randInstance.generateListRandom(20,200,3);
     } while(choiceArray.includes(bpm));
+
     const correctChoice = randInstance.generateRandomInclusive(1,4);
-    choiceArray.splice(correctChoice-1, 0, bpmInput);
+    if (correctChoice != 4) {
+
+    } else  {
+        choiceArray.push(bpm);
+    }
+    choiceArray.splice(correctChoice-1, 0, bpm);
 
     return Object.freeze( {
-            playAudioClip: function () {
-                //audioClip.play();
-                return;
-            },
-            pauseAudioClip: function() {
-                //audioClip.pause();
-                return;
-            },
-            loadAudioClip: function() {
-                //audioClip.load();
-                return;
-            },
             isCorrectChoice: function (choiceInput) {
                 return choiceInput === correctChoice;
             },
@@ -33,7 +28,7 @@ const Question = function (audioRelativePathInput, bpmInput, hintInput) {
                 return bpm === bpmInput;
             },
             getChoice: function (choiceInput) {
-                if (!(choiceInput >= 1 && choiceInput <= choiceArrayInput.length)) {throw {message: "Out of Range"}};
+                if (!(choiceInput >= 1 && choiceInput <= choiceArray.length)) {throw {message: "Out of Range"}};
                 return choiceArray[choiceInput-1];
             },
             getCorrectBPM: function () {
