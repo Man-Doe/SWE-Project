@@ -50,10 +50,10 @@
   }
 .boxLabel{
   position: absolute;
-  top: 330px;
-  left: 170px;
-  font-size: 20px;
-  font-family: var(--font-inter);
+  top: 332px;
+  left: 172px;
+  font-size: 22px;
+  font-family: var(--novem);
 }
   .textBox{
     position: absolute;

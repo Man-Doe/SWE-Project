@@ -1,12 +1,15 @@
-body {
-    position: fixed;
-    margin-top: 10%;
-    margin-left:27.5%;
-    background: url(./Assets/Futuristic.jpg);
-    background-size: 100%;
-  }
+html { 
+  background: url(./Assets/Futuristic.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
   .foreground{
+    position: relative;
+    left: 25vw;
+    top: 12.5vh;
     align-items: center;
     text-align: center;
     width: 850px;
@@ -15,10 +18,14 @@ body {
     background-repeat: no-repeat;
     color: var(--color-white);
     font-family: Novem;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
   }
 
   .headingText{
     font-family: Novem;
+    text-shadow: 5px 5px 20px aqua;
   }
 
   .button1,

@@ -1,12 +1,13 @@
 .headingText {
     position:absolute;
-    top: 140px;
+    top: 110px;
     left: calc(50% - 139.5px);
-    font-size: 40px;
+    font-size: 50px;
     color: #000;
     display: inline-block;
     width: 279px;
     height: 75px;
+    
 }
 
 .button1,
@@ -45,6 +46,7 @@
   top: 500px;
   left: 320px;
   width: 200px;
+  height: 40px;
   text-align: center; 
   align-content: center;
   font-size: 18px;
