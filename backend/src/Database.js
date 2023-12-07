@@ -3,7 +3,7 @@
 function Database() {
     const Question = require("./Question");
     const sqlite3 = require("sqlite3").verbose();
-    const db = new sqlite3.Database("backend/db/GameDatabase.db", sqlite3.OPEN_READWRITE, (err) => {
+    const db = new sqlite3.Database("../db/GameDatabase.db", sqlite3.OPEN_READWRITE, (err) => {
         if (err) return console.error(err.message);
     });
     return {
@@ -72,6 +72,7 @@ function Database() {
     };
 }
 
+db = Database();
 
 
 module.exports = Database;

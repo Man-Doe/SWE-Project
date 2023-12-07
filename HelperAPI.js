@@ -1,9 +1,9 @@
 
 
 async function startGame(numOfQuestions, numOfGuesses, difficulty) {
-    await fetch(("http://localhost:49293/start/" + numOfQuestions + 
+    const response = await fetch(("http://localhost:49293/start/" + numOfQuestions + 
                     "/" + numOfGuesses + "/" + difficulty)); 
-    return;
+    return response;
 }
 
 async function answerOpenResponseQuestion(bpmInput) {
@@ -31,7 +31,7 @@ async function getAudio() {
 
 async function recordOnLeaderBoard(username) {
     const response = await fetch("http://localhost:49293/leaderboard/record/" + username);
-    return;
+    return response;
 }
 
 async function getPlayerOnLeaderboard(rank) {
@@ -45,5 +45,3 @@ async function getLeaderboardCount() {
     const result = response.json();
     return result;
 }
-
-
