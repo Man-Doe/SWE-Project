@@ -22,6 +22,7 @@ function Game () {
     
     return Object.freeze (  {
             startNewGame: async function (numberOfQuestions, guessLimitInput, gameType) {
+                if (guessLimitInput < 0 || difficulty > 3 || difficulty <= 0 || numberOfQuestions < 1) {throw {message:"Invalid input"};}
                 currentRound = 1;
                 guessLimit = guessLimitInput;
                 guessRemaining = guessLimit;
@@ -30,7 +31,6 @@ function Game () {
                 difficulty = gameType;
                 var idList  = randInstance.generateListRandom(1, await databaseInstance.count(), numberOfQuestions);
                 questionRemaning = [];
-                if (guessLimitInput < 0 || difficulty > 3 || difficulty <= 0 || numberOfQuestions < 1) {throw {message:"Invalid input"};}
                 currentQuestion = await databaseInstance.getQuestion(idList.pop()); 
                 for (var i = 0; i < numberOfQuestions - 1; i++) {
                     questionRemaning[i] = await databaseInstance.getQuestion(idList.pop());
