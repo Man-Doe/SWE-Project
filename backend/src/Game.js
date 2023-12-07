@@ -40,7 +40,7 @@ function Game () {
             answerChoiceQuestion: function (choiceInput) {
                 if (currentQuestion === null) {throw {message:"No questions to answer"};}
                 var isCorrect = currentQuestion.isCorrectChoice(choiceInput);
-                var correctChoice = -1;
+                var correctChoice = null;
                 guessRemaining -= 1;
                 guessAmount += 1;
                 if (isCorrect || guessRemaining <= 0) {
@@ -58,7 +58,7 @@ function Game () {
             answerOpenQuestion: function (bpmInput) {
                 if (currentQuestion === null) {throw {message:"No questions to answer"};}
                 var isCorrect = currentQuestion.isCorrectBpm(bpmInput);
-                var correctBPM = -1;
+                var correctBPM = null;
                 guessRemaining -= 1;
                 guessAmount += 1;
                 if (isCorrect || guessRemaining <= 0) {
