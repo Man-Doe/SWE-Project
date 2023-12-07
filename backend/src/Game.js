@@ -81,25 +81,35 @@ function Game () {
                 return (guessCorrect/guessAmount)*100;
             },           
             getData: function() {
-                var hintInput = currentQuestion.getNextHintText();
-                var accuracy = this.getAccuracyPercentage();
-                var hasGameEnded = (currentQuestion === null);
-                if (difficulty != 1) {
-                    hintInput = "";
+                if (currentQuestion === null) {
+                    return {
+                        "choice1": currentQuestion.getChoice(1),
+                        "choice2": currentQuestion.getChoice(2),
+                        "choice3": currentQuestion.getChoice(3),
+                        "choice4": currentQuestion.getChoice(4),
+                        "hint": hintInput, 
+                        "accuracyPercentage": this.getAccuracyPercentage(),
+                        "currentRound": currentRound,
+                        "guessRemaning": guessRemaining,
+                        "guessAmount": guessAmount,
+                        "guessCorrect": guessCorrect,
+                        "hasGameEnded": true
+                    };
+                } else  {
+                    return {
+                        "choice1": null,
+                        "choice2": null,
+                        "choice3": null,
+                        "choice4": null,
+                        "hint": null, 
+                        "accuracyPercentage": this.getAccuracyPercentage(),
+                        "currentRound": currentRound,
+                        "guessRemaning": guessRemaining,
+                        "guessAmount": guessAmount,
+                        "guessCorrect": guessCorrect,
+                        "hasGameEnded": false
+                    };
                 }
-                return {
-                    "choice1": currentQuestion.getChoice(1),
-                    "choice2": currentQuestion.getChoice(2),
-                    "choice3": currentQuestion.getChoice(3),
-                    "choice4": currentQuestion.getChoice(4),
-                    "hint": hintInput, 
-                    "accuracyPercentage": accuracy,
-                    "currentRound": currentRound,
-                    "guessRemaning": guessRemaining,
-                    "guessAmount": guessAmount,
-                    "guessCorrect": guessCorrect,
-                    "hasGameEnded": hasGameEnded
-                };
             },
             getLeaderboardCount: async function() {
                 return new Promise((resolve) => {
