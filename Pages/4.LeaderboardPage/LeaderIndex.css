@@ -38,7 +38,6 @@
     text-align: center;
     align-items: center;
     font-style: italic;
-    color: rgb(0, 0, 0);
     display: block;
     background-color: rgba(38, 1, 246, 0.576);
     border-radius: var(--br-9xs);
@@ -47,4 +46,8 @@
     align-self: center;
     font-family: Novem;
     line-height: 20px;
+  }
+
+  .backButton{
+    filter: invert(.5)
   }

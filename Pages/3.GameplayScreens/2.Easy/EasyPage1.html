@@ -56,7 +56,10 @@
         var found = arr.find((element) => 
         document.getElementById(element.getAttribute('id')).innerHTML == bpm_ans);
         
-        document.getElementById(found.getAttribute('id')).innerHTML = "This One!";
+        document.getElementById(found.getAttribute('id')).innerHTML = "Answer:" + document.getElementById(found.getAttribute('id')).innerHTML;
+        document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
+            + ' Total: ' + numGuesses + " Correct: " + correct_guesses;
+
         document.getElementById("nextArr").removeAttribute("hidden");
         }
 
@@ -116,14 +119,17 @@
         optButton.addEventListener("click", function (e) {
           numGuesses++;
           guessesLeft--;
+          
           if(e.target.innerHTML == bpm_ans){
             toggleButtons(true);
             correct_guesses++;
             document.getElementById(optButton.getAttribute('id')).innerHTML = "Correct!";
+            document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
+            + ' Total: ' + numGuesses + " Correct: " + correct_guesses;
             document.getElementById("nextArr").removeAttribute("hidden");
           }else{
-            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
-              + ' Total:' + numGuesses;
+            document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
+            + ' Total: ' + numGuesses;
             optButton.innerHTML = "Wrong!";
             if (guessesLeft == 0)
               revealAns();
@@ -190,9 +196,8 @@
             toggleButtons(false);
             question_num++;
             guessesLeft = 3;
-            
-            document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
-            + ' Total:' + numGuesses + " Correct: " + correct_guesses;
+            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
+              + ' Total: ' + numGuesses;
             document.getElementById("header").innerHTML = "Song " + question_num + "/5";
             document.getElementById("nextArr").setAttribute("hidden", "hidden");
           }

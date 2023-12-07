@@ -3,7 +3,6 @@
     top: 120px;
     left: 305px;
     font-size: 45px;
-    color: #000;
     display: inline-block;
     width: 241px;
     height: 45px;
@@ -23,7 +22,6 @@
     height: 47px;
     display: flex;
     font-size: 20px;
-    
     padding: var(--padding-5xs) var(--padding-base);
     box-sizing: border-box;
     cursor: pointer;
@@ -39,6 +37,7 @@
     position: absolute;
     top: 13vh;
     left: 25.5vw;
+    filter: invert(.5)
   }
   
 

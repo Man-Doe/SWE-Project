@@ -38,7 +38,8 @@
 
         
       document.getElementById("final").innerHTML = "Correct: " +
-      corGuesses + "/5 <br /> Accuracy: " + (corGuesses/guessCnt * 100).toFixed(2) + "%" 
+      corGuesses + "/5 <br /> Accuracy: " + (corGuesses/guessCnt * 100).toFixed(2) + "%<br /> Difficulty: " +
+      gameMode;
         
 
       const hintIcon = document.getElementById("hintIcon");

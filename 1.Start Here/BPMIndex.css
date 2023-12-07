@@ -1,10 +1,11 @@
 .headingText{
   position: absolute;
-  top: 217px;
+  top: 175px;
   left: 250px;
-  font-size: 30px;
+  font-size: 45px;
   width: 304px;
   height: 71px;
+  color: white;
 }
 
 .buttonText {
@@ -12,7 +13,7 @@
 }
 .button1 {
   position: absolute;
-  top: 307px;
+  top: 355px;
   left: 500px;
   width: 98px;
   height: 42px;
@@ -28,7 +29,7 @@
 .textBox{
   position: absolute;
   left: 250px;
-  top: 305px;
+  top: 355px;
   font-size: 18px;
   text-align: left;
   width: 200px;

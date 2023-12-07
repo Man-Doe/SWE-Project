@@ -15,7 +15,6 @@
     display: inline-block;
     width: 200px;
     font-style: italic;
-    color: rgb(0, 0, 0);
     display: block;
     background-color: #4b01f693;
     border-radius: var(--br-9xs);
@@ -28,5 +27,9 @@
 
   .dropdown-placeholder {
     top: 400px;
+  }
+
+  .backButton{
+    filter: invert(.5)
   }
   
