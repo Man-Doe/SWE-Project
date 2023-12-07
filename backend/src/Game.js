@@ -81,21 +81,7 @@ function Game () {
                 return (guessCorrect/guessAmount)*100;
             },           
             getData: function() {
-                if (currentQuestion === null) {
-                    return {
-                        "choice1": currentQuestion.getChoice(1),
-                        "choice2": currentQuestion.getChoice(2),
-                        "choice3": currentQuestion.getChoice(3),
-                        "choice4": currentQuestion.getChoice(4),
-                        "hint": hintInput, 
-                        "accuracyPercentage": this.getAccuracyPercentage(),
-                        "currentRound": currentRound,
-                        "guessRemaning": guessRemaining,
-                        "guessAmount": guessAmount,
-                        "guessCorrect": guessCorrect,
-                        "hasGameEnded": true
-                    };
-                } else  {
+                if (currentQuestion == null) {
                     return {
                         "choice1": null,
                         "choice2": null,
@@ -108,6 +94,24 @@ function Game () {
                         "guessAmount": guessAmount,
                         "guessCorrect": guessCorrect,
                         "hasGameEnded": false
+                    };
+                } else  {
+                    var hintInput = currentQuestion.getNextHintText();
+                    if (difficulty != 1) {
+                        hintInput = null;
+                    }
+                    return {
+                        "choice1": currentQuestion.getChoice(1),
+                        "choice2": currentQuestion.getChoice(2),
+                        "choice3": currentQuestion.getChoice(3),
+                        "choice4": currentQuestion.getChoice(4),
+                        "hint": hintInput, 
+                        "accuracyPercentage": this.getAccuracyPercentage(),
+                        "currentRound": currentRound,
+                        "guessRemaning": guessRemaining,
+                        "guessAmount": guessAmount,
+                        "guessCorrect": guessCorrect,
+                        "hasGameEnded": true
                     };
                 }
             },
