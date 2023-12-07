@@ -9,7 +9,7 @@ function Game () {
     var guessCorrect = 0;
     var guessLimit = 0;
     var guessRemaining = 0;
-    var questionRemaning = 0;
+    var questionRemaning = [];
     var difficulty = 0;
     
     
