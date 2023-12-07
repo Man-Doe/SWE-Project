@@ -82,6 +82,7 @@ function Game () {
             },           
             getData: function() {
                 if (currentQuestion == null) {
+                    console.log(questionRemaning.length);
                     return {
                         "choice1": null,
                         "choice2": null,
