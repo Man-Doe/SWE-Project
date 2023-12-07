@@ -93,7 +93,7 @@ function Game () {
                         "guessRemaning": guessRemaining,
                         "guessAmount": guessAmount,
                         "guessCorrect": guessCorrect,
-                        "hasGameEnded": false
+                        "hasGameEnded": true
                     };
                 } else  {
                     var hintInput = currentQuestion.getNextHintText();
@@ -111,7 +111,7 @@ function Game () {
                         "guessRemaning": guessRemaining,
                         "guessAmount": guessAmount,
                         "guessCorrect": guessCorrect,
-                        "hasGameEnded": true
+                        "hasGameEnded": false
                     };
                 }
             },
