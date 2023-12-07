@@ -57,7 +57,7 @@ function Database() {
             });
         },
         getLeaderboardRank: async function(rank) {
-            if (rank > this.getLeaderboardCount()) {throw {message: "Rank does not exist within leadboard"};}
+            if (rank > await this.getLeaderboardCount()) {throw {message: "Rank does not exist within leadboard"};}
             var query = "SELECT * FROM Leaderboard ORDER BY accuracy DESC LIMIT 1 OFFSET ?;";
             return new Promise((resolve, reject) => {
                 db.get(query, [(rank-1)], (err, row) => {

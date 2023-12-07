@@ -22,7 +22,7 @@ const Question = function (audioRelativePathInput, bpmInput, hintInput) {
 
     return Object.freeze( {
             isCorrectChoice: function (choiceInput) {
-                return choiceInput === choiceArray[correctChoice];
+                return choiceInput == correctChoice;
             },
             isCorrectBpm: function (bpmInput) {
                 return bpm === bpmInput;
