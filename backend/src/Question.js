@@ -25,7 +25,7 @@ const Question = function (audioRelativePathInput, bpmInput, hintInput) {
                 return choiceInput == correctChoice;
             },
             isCorrectBpm: function (bpmInput) {
-                return bpm === bpmInput;
+                return bpm == bpmInput;
             },
             getChoice: function (choiceInput) {
                 if (!(choiceInput >= 1 && choiceInput <= choiceArray.length)) {throw {message: "Out of Range"}};
