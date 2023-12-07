@@ -22,7 +22,7 @@ function Game () {
     
     return Object.freeze (  {
             startNewGame: async function (numberOfQuestions, guessLimitInput, gameType) {
-                if (guessLimitInput < 0 || difficulty > 3 || difficulty <= 0 || numberOfQuestions < 1) {throw {message:"Invalid input"};}
+                if (guessLimitInput < 0 || gameType > 3 || gameType <= 0 || numberOfQuestions < 1) {throw {message:"Invalid input"};}
                 currentRound = 1;
                 guessLimit = guessLimitInput;
                 guessRemaining = guessLimit;
