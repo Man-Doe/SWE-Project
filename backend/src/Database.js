@@ -34,14 +34,10 @@ function Database() {
         },
         insertIntoLeaderboard: async function(username, score) {
             var query = 'INSERT INTO Leaderboard(username, accuracy) VALUES (?, ?);';
-            return new Promise((resolve, reject) => {
-                db.get(query, [username, score], (err, row) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(row);
-                    }
-                });
+            db.run(query, [username, score], function(err) {
+                if (err) {
+                    return console.error(err.message);
+                  }
             });
         },
         getLeaderboardCount: async function() {
