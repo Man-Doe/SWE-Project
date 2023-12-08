@@ -31,173 +31,80 @@
     </div>
 
     <script>
-      var right_button;
-      var bpm_ans;
-      var correct_guesses = 0;
-      var question_num = 1;
-      var guessesLeft = 3;
-      var numGuesses = 0;
+    async function getData() {
+    const response = await fetch("man-doe.github.io/SWE-Project/backend/src/current-game-data");
+    const result = await response.json();
+    return result;
+}
+async function startGame(numOfQuestions, numOfGuesses, difficulty) {
+    const response = await fetch(("man-doe.github.io/SWE-Project/backend/src/start/" + numOfQuestions + 
+                    "/" + numOfGuesses + "/" + difficulty)); 
+    return response;
+}
 
-      /*function selectClip (): BPM
-        will at random
-      */
+function initButtonChoice(dataInput) {
+    //stuff to draw choice button
+    document.getElementById("op1").onclick() = async function () {
+        await answerEvent(1);
+        //disable button
+    };
+    document.getElementById("op2").onclick() = async function () {
+        await answerEvent(2);
+        //disable button
+    };
+    document.getElementById("op3").onclick() = async function () {
+        await answerEvent(3);
+        //disable button
+    };
+    document.getElementById("op4").onclick() = async function () {
+        await answerEvent(4);
+        //disable button
+    };
+}
 
-      /*function revealAns():
-        - turns off all buttons before hand
-        - searches through the buttons to see which buttons' option 
-        string matches the correct answer
-        -reveals the next question arrow
-      */
-      function revealAns(){
-        var arr = [option_1, option_2,option_3,option_4]
-        
-        toggleButtons(true)
+async function answerEvent(integerInput) {
+    var response = await answerMultipleChoiceQuestion(integerInput);
+    var result = await response.json();
+    data = await getData();
+    if (result["isCorrect"] == true) {
+        //disable all buttons
+        //drawCorrectScreen(data)        //includes initButtonNext, updates the view with the new data except for the choice button
+    } else if (result["correctChoice"] != null) {
+        // disable all buttons
+        //drawLastIncorrectScreen(data)  //includes initButtonNext, updates the view with the new data except for the choice button 
+    } else {
+        //drawNotLastIncorrectScreen(data); //updates the view with the new data except for the choice button
+    }
+}
 
-        var found = arr.find((element) => 
-        document.getElementById(element.getAttribute('id')).innerHTML == bpm_ans);
-        
-        document.getElementById(found.getAttribute('id')).innerHTML = "This One!";
-        document.getElementById("nextArr").removeAttribute("hidden");
+async function initButtonNext(dataInput) {
+    //stuff to draw next button
+    document.getElementById("next").onclick() = function() {
+        if (dataInput["hasGameEnded"]) {
+            //go to the result screen
+        } else {
+            initButtonChoice(dataInput); 
         }
+    }
+}
 
 
-        /*function toggleButtons(t_f):void
-        enables/disables all buttons at the same time*/
-        function toggleButtons(t_f){
-          option_1.disabled = t_f;
-          option_2.disabled = t_f
-          option_3.disabled = t_f;
-          option_4.disabled = t_f;
-        }
+  var data;
+  async function fetchData() {   
+    await startGame(5, 3, 1);
+  try {
+    // Assuming getData is an asynchronous function that returns a Promise
+    data = await getData();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+} 
 
-      /*function setCorrectAns(): void
-        -randomly generates four answers, 3 being wrong and 1 being right
-        -sets the correct answer based off what right_button equals
-        -sets the other buttons to random answers between 60-144bpm
 
-        **note - functionw will proabaly need to pass the buttons to use them
-      */
-      function setCorrectAns(){
-        var arr = [option_1, option_2, option_3, option_4]
+// Call the function to initiate the asynchronous operation
+fetchData();
 
-        right_button = Math.floor(Math.random() * 4) + 1;
-        bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60; 
-        
-        var found = arr.find((element) => 
-        document.getElementById(element.getAttribute('id')).value == right_button);
-        document.getElementById(found.getAttribute('id')).innerHTML = bpm_ans;
-
-        if(option_1 != found)
-          document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-  
-        if(option_2 != found)
-          document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-        
-        if(option_3 != found)
-          document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-
-        if(option_4 != found)
-          document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
-        
-        console.log(bpm_ans)
-      }
-
-      /* function isCorrect(opt: optButton): void
-        - takes in a button object and checks to see if it is correct
-        - regardless of conditional, we inc numGuesses, and dec guessesLeft
-        - if the button is correct, we set its text to "Correct" and reveal
-        nextbutton
-        - otherwise we set the text to "Wrong!", update the game stats display
-          - if player has no guesses left, then revealAns is called
-        - at the end, the button is disabled
-      */
-
-      function isCorrect(optButton){
-        optButton.addEventListener("click", function (e) {
-          numGuesses++;
-          guessesLeft--;
-          if(e.target.innerHTML == bpm_ans){
-            toggleButtons(true);
-            correct_guesses++;
-            document.getElementById(optButton.getAttribute('id')).innerHTML = "Correct!";
-            document.getElementById("nextArr").removeAttribute("hidden");
-          }else{
-            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
-              + ' Total:' + numGuesses;
-            optButton.innerHTML = "Wrong!";
-            if (guessesLeft == 0)
-              revealAns();
-
-          }
-          optButton.disabled = true; 
-        });
-      }
-      /************************************************************************/
-
-      const hintIcon = document.getElementById("hintIcon");
-      const toggleMusic = document.getElementById("toggleMusic");
-      const option_1 = document.getElementById("option-1");
-      const option_2 = document.getElementById("option-2");
-      const option_3 = document.getElementById("option-3");
-      const option_4 = document.getElementById("option-4");
-      const nextButton = document.getElementById("nextArr");
-
-      setCorrectAns();
-
-      
-      if (hintIcon) {
-        hintIcon.addEventListener("mouseover", function (e) {
-            document.getElementById("hintPHolder").style.display = 'block';
-        });
-        hintIcon.addEventListener("mouseout", function (e) {
-            document.getElementById("hintPHolder").style.display = 'none';
-        }); 
-      }
-
-      if (toggleMusic) {
-        toggleMusic.addEventListener("mouseover", function (e) {
-            document.getElementById("hintPHolder").style.display = 'block';
-        });
-        toggleMusic.addEventListener("mouseout", function (e) {
-            document.getElementById("hintPHolder").style.display = 'none';
-        }); 
-      }
-
-      if (option_1)
-        isCorrect(option_1);
-      
-      if (option_2)
-        isCorrect(option_2);
-
-      if (option_3)
-        isCorrect(option_3);
-
-      if (option_4)
-        isCorrect(option_4);
-      
-      if (nextButton) {
-        nextButton.addEventListener("click", function (e) {
-          if (question_num + 1 > 5){
-           
-            localStorage.setItem('total-guesses', numGuesses);
-            localStorage.setItem('correct-guesses', correct_guesses);
-            localStorage.setItem('game-mode', document.getElementById('gamemode').innerHTML)
-            window.location.href = '../5.Results/Results.html'
-          
-          } else {
-            
-            setCorrectAns();
-            toggleButtons(false);
-            question_num++;
-            guessesLeft = 3;
-            
-            document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
-            + ' Total:' + numGuesses + " Correct: " + correct_guesses;
-            document.getElementById("header").innerHTML = "Song " + question_num + "/5";
-            document.getElementById("nextArr").setAttribute("hidden", "hidden");
-          }
-        });
-      }    
     </script>
 </body>
 
