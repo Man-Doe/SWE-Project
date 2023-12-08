@@ -1,7 +1,7 @@
 
 
 async function startGame(numOfQuestions, numOfGuesses, difficulty) {
-    const response = await fetch(("http://localhost:49293/start/" + numOfQuestions + 
+    const response = await fetch(("https://coral-app-tlq32.ondigitalocean.app/" + numOfQuestions + 
                     "/" + numOfGuesses + "/" + difficulty)); 
     return response;
 }
@@ -19,7 +19,7 @@ async function answerMultipleChoiceQuestion(choiceInput) {
 }
 
 async function getData() {
-    const response = await fetch("http://localhost:49293/current-game-data");
+    const response = await fetch("https://coral-app-tlq32.ondigitalocean.app/current-game-data");
     const result = await response.json();
     return result;
 }
@@ -45,3 +45,11 @@ async function getLeaderboardCount() {
     const result = response.json();
     return result;
 }
+
+async function d() {
+    await startGame(1,1,1);
+    something = await getData();
+    document.writeln(JSON.stringify(something));
+};
+
+d();
