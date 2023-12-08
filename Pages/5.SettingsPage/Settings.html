@@ -21,17 +21,26 @@
         id="backButton"
       />
 
-      <div class="slider-placeholder-here">Slider for text size to be added in final version</div>
-      <div class="dropdown-placeholder">font dropdown to be added in final version</div>
+      <div class="slider-placeholder-here">
+        Slider for text size to be added in final version
+      </div>
+      <div class="dropdown-placeholder">
+        <form action="">
+          <input type="radio" id="normal" name="font" value="Normal" />
+          <label for="normal">Normal</label><br />
+          <input type="radio" id="simple" name="font" value="Simple" />
+          <label for="simple">Simple</label><br />
+        </form>
+      </div>
     </div>
 
     <script>
       var vector = document.getElementById("backButton");
       if (vector) {
         vector.addEventListener("click", function (e) {
-            window.location.href = '../2.MainPage/MainScreen.html'
+          window.location.href = "../2.MainPage/MainScreen.html";
         });
       }
-      </script>
+    </script>
   </body>
 </html>
