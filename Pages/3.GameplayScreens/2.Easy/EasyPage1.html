@@ -32,12 +32,12 @@
 
     <script>
     async function getData() {
-    const response = await fetch("man-doe.github.io/SWE-Project/backend/src/current-game-data");
+    const response = await fetch("../../../backend/src/current-game-data");
     const result = await response.json();
     return result;
 }
 async function startGame(numOfQuestions, numOfGuesses, difficulty) {
-    const response = await fetch(("man-doe.github.io/SWE-Project/backend/src/start/" + numOfQuestions + 
+    const response = await fetch(("../../../backend/src/start/" + numOfQuestions + 
                     "/" + numOfGuesses + "/" + difficulty)); 
     return response;
 }
