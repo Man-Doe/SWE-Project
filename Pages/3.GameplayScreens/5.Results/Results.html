@@ -74,32 +74,32 @@
       if (buttonContainer1) {
         buttonContainer1.addEventListener("click", function (e) {
           if(gameMode == 'Easy'){
-            window.location.href = '../2.Easy/EasyPage1.html';
+            window.location.href = './2.Easy/EasyPage1.html';
           }else if (gameMode == 'Medium')
-            window.location.href = '../3.Medium/MediumPage.html';
+            window.location.href = './3.Medium/MediumPage.html';
           else
-            window.location.href = '../4.Hard/HardPage.html';
+            window.location.href = './4.Hard/HardPage.html';
         });
       }
       
       var buttonContainer2 = document.getElementById("chooseDifButton");
       if (buttonContainer2) {
         buttonContainer2.addEventListener("click", function (e) {
-            window.location.href = '../1.ChooseDif/Selection.html'
+            window.location.href = './1.ChooseDif/Selection.html'
         });
       }
       
       var buttonContainer3 = document.getElementById("leaderButton");
       if (buttonContainer3) {
         buttonContainer3.addEventListener("click", function (e) {
-            window.location.href = '../../4.LeaderboardPage/Leaderboard.html'
+            window.location.href = '../4.LeaderboardPage/Leaderboard.html'
         });
       }
       
       var home = document.getElementById("home");
       if (home) {
         home.addEventListener("click", function (e) {
-            window.location.href = '../../2.MainPage/MainScreen.html'
+            window.location.href = '../2.MainPage/MainScreen.html'
         });
       }
       </script>
