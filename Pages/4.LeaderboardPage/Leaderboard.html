@@ -16,35 +16,51 @@
       <div class="headingText">Leaderboards</div>
       <button class="button1" id="soloBoard">Personal</button>
       <button class="button2" id="globalBoard">Global</button>
-      <div class="LeaderPlaceholder">Placeholder for a personal leaderboard and a global leaderboard
-        to be implemented in the final version of the prototype
+      <div class="LeaderPlaceholder">
+        <table class="leaderboardTable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Points</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Armando</td>
+            <td>10</td>
+          </tr>
+        </table>
       </div>
-      <img class="backButton" alt="" src="../../Assets/Left-Arrow.svg" id="backButton" />
+      <img
+        class="backButton"
+        alt=""
+        src="../../Assets/Left-Arrow.svg"
+        id="backButton"
+      />
     </div>
     <script>
-        var personalButton = document.getElementById("soloBoard");
-        if (personalButton) {
-          personalButton.addEventListener("click", function (e) {
-            e.target.innerHTML = "Coming Soon..."
-          });
-          personalButton.addEventListener("mouseout", function (e) {
-            e.target.innerHTML = "Personal"
-          });
-        }
-        
-        var globalButton = document.getElementById("globalBoard");
-        if(globalButton){
+      var personalButton = document.getElementById("soloBoard");
+      if (personalButton) {
+        personalButton.addEventListener("click", function (e) {
+          e.target.innerHTML = "Coming Soon...";
+        });
+        personalButton.addEventListener("mouseout", function (e) {
+          e.target.innerHTML = "Personal";
+        });
+      }
+
+      var globalButton = document.getElementById("globalBoard");
+      if (globalButton) {
         globalButton.addEventListener("click", function (e) {
-            e.target.innerHTML = "Coming Soon..."
-          });
-          globalButton.addEventListener("mouseout", function (e) {
-            e.target.innerHTML = "Global"
-          });
-        }
-    var vector = document.getElementById("backButton");
+          e.target.innerHTML = "Coming Soon...";
+        });
+        globalButton.addEventListener("mouseout", function (e) {
+          e.target.innerHTML = "Global";
+        });
+      }
+      var vector = document.getElementById("backButton");
       if (vector) {
         vector.addEventListener("click", function (e) {
-            window.location.href = '../2.MainPage/MainScreen.html'
+          window.location.href = "../2.MainPage/MainScreen.html";
         });
       }
     </script>
