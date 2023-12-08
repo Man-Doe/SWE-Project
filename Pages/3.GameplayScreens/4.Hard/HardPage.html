@@ -39,10 +39,10 @@
         
         subButton.addEventListener("click", function (e) {
             numGuesses++;
-            if(/^[a-z0-9]+$/i.test(e.target.value) == true){
+            if(/^[a-z]+$/i.test(document.getElementById('textBox').value ) == true){
               document.getElementById("textBox").value = null;
               document.getElementById('textBox').placeholder = 'must be a number!'
-            }else if(e.target.value < 60 || e.target.value > 144){
+            }else if(document.getElementById('textBox').value  < 60 || document.getElementById('textBox').value > 144){
               document.getElementById("textBox").value = null;
               document.getElementById('textBox').placeholder = 'must be value betwen 60-144!'
             }else if(document.getElementById('textBox').value == bpm_ans){
