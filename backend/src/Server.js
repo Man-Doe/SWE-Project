@@ -77,7 +77,8 @@ app.get("/leaderboard/record/:username", async function(req, res) {
 }); 
 
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(49293, () => {
-    console.log('Server is running on port 49293');
+app.listen(PORT, () => {
+    console.log('Server is running on port 3000');
 });

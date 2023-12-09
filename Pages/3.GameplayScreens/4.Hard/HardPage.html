@@ -29,11 +29,17 @@
       
     </div>
 
+    <script src="../../src/QuestionList.js"></script>
+
     <script>
-      var bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60;
+      
       var correct_guesses = 0;
       var question_num = 1;
       var numGuesses = 0;
+      var something = QuestionList();
+      
+      something.generateQuestions(5);
+      var bpm_ans = something.getCorrectBPM();
 
       function isCorrect(subButton){
         console.log(document.getElementById('textBox').value )
@@ -57,9 +63,6 @@
               document.getElementById("nextArr").removeAttribute("hidden");
               subButton.disabled = true;
             }
-
-            
-            
           });
         }
 
@@ -68,12 +71,13 @@
       const nextButton = document.getElementById("nextArr");
 
       if (toggleMusic) {
-        toggleMusic.addEventListener("mouseover", function (e) {
-            document.getElementById("hintPHolder").style.display = 'block';
+        toggleMusic.addEventListener("click", function(e){ 
+          if(something.isPlaying() == false)
+            something.pauseMusic();
+          else
+            something.playMusic();
+            
         });
-        toggleMusic.addEventListener("mouseout", function (e) {
-            document.getElementById("hintPHolder").style.display = 'none';
-        }); 
 
       }
 
@@ -84,8 +88,6 @@
       
       if (nextButton) {
         nextButton.addEventListener("click", function (e) {
-          bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60;
-          submitAns.disabled = false;
           if (question_num + 1 > 5){
             
             localStorage.setItem('total-guesses', numGuesses);
@@ -94,9 +96,13 @@
             window.location.href = '../5.Results/Results.html'
           
           } else {
-
             question_num++;
+            something.nextQuestion();
+            bpm_ans = something.getCorrectBPM();
+            
+            submitAns.disabled = false;
             submitAns.innerHTML = "Submit"
+            
             document.getElementById("textBox").value = null;
             document.getElementById("header").innerHTML = "Song " + question_num + "/5";
             document.getElementById("nextArr").setAttribute("hidden", "hidden");

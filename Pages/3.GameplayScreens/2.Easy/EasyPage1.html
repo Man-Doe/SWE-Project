@@ -27,18 +27,29 @@
       </div>
       <img class="stop-and-play-duotone-icon" id="toggleMusic" alt="" src="../../../Assets/Stop_and_play_duotone.svg" />
       <img class="nextArrow" alt="" id="nextArr" src="../../../Assets/Right-Arrow.svg" hidden="" />
+
+
+      <script src="../../src/QuestionList.js"></script>
       
     </div>
 
     <script>
-      var right_button;
-      var bpm_ans;
-      var correct_guesses = 0;
-      var question_num = 1;
-      var guessesLeft = 3;
-      var numGuesses = 0;
+    var right_button;
+    var bpm_ans;
 
-      /*function selectClip (): BPM
+    var correct_guesses = 0;
+    var question_num = 1;
+    var guessesLeft = 3;
+    var numGuesses = 0;
+
+    var something = QuestionList();
+    something.generateQuestions(5);
+
+    //console.log(something.getChoice(3))
+
+    //something.getChoice(1);
+
+    /*function selectClip (): BPM
         will at random
       */
 
@@ -50,6 +61,8 @@
       */
       function revealAns(){
         var arr = [option_1, option_2,option_3,option_4]
+
+        
         
         toggleButtons(true)
 
@@ -80,27 +93,41 @@
 
         **note - functionw will proabaly need to pass the buttons to use them
       */
+     
+
       function setCorrectAns(){
         var arr = [option_1, option_2, option_3, option_4]
 
-        right_button = Math.floor(Math.random() * 4) + 1;
-        bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60; 
-        
+        if (something.getCorrectBPM() >= 0) {
+          console.log("correct: " + something.getCorrectBPM())
+          console.log("choice: " + something.getCorrectChoice())
+        }
+
+
+        right_button = something.getCorrectChoice();
+        bpm_ans = something.getCorrectBPM();
+
         var found = arr.find((element) => 
         document.getElementById(element.getAttribute('id')).value == right_button);
         document.getElementById(found.getAttribute('id')).innerHTML = bpm_ans;
 
+        // console.log(something.getChoice(1))
+        // console.log(something.getChoice(2))
+        // console.log(something.getChoice(3))
+        // console.log(something.getChoice(4))
+        
+
         if(option_1 != found)
-          document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-1").innerHTML = something.getChoice(1)
   
         if(option_2 != found)
-          document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-2").innerHTML = something.getChoice(2)
         
         if(option_3 != found)
-          document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-3").innerHTML = something.getChoice(3)
 
         if(option_4 != found)
-          document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-4").innerHTML = something.getChoice(4)
         
         console.log(bpm_ans)
       }
@@ -153,6 +180,7 @@
       
       if (hintIcon) {
         hintIcon.addEventListener("mouseover", function (e) {
+          document.getElementById("hintPHolder").innerHTML = something.getHint();
             document.getElementById("hintPHolder").style.display = 'block';
         });
         hintIcon.addEventListener("mouseout", function (e) {
@@ -160,14 +188,18 @@
         }); 
       }
 
+
       if (toggleMusic) {
-        toggleMusic.addEventListener("mouseover", function (e) {
-            document.getElementById("hintPHolder").style.display = 'block';
+
+        toggleMusic.addEventListener("click", function(e){ 
+          if(something.isPlaying() == false)
+            something.pauseMusic();
+          else
+            something.playMusic();
+            
         });
-        toggleMusic.addEventListener("mouseout", function (e) {
-            document.getElementById("hintPHolder").style.display = 'none';
-        }); 
       }
+
 
       if (option_1)
         isCorrect(option_1);
@@ -191,18 +223,20 @@
             window.location.href = '../5.Results/Results.html'
           
           } else {
-            
+            something.nextQuestion();
+            isPlaying = false
             setCorrectAns();
+
             toggleButtons(false);
             question_num++;
             guessesLeft = 3;
-            document.getElementById("guessCount").innerHTML = "Guesses Left: " + guessesLeft 
-              + ' Total: ' + numGuesses;
+            document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
+            + ' Total:' + numGuesses + " Correct: " + correct_guesses;
             document.getElementById("header").innerHTML = "Song " + question_num + "/5";
             document.getElementById("nextArr").setAttribute("hidden", "hidden");
           }
         });
-      }    
+      }
     </script>
 </body>
 

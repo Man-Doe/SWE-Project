@@ -9,7 +9,7 @@ function Game () {
     var guessCorrect = 0;
     var guessLimit = 0;
     var guessRemaining = 0;
-    var questionRemaning = 0;
+    var questionRemaning = [];
     var difficulty = 0;
     
     
@@ -22,6 +22,7 @@ function Game () {
     
     return Object.freeze (  {
             startNewGame: async function (numberOfQuestions, guessLimitInput, gameType) {
+                if (guessLimitInput < 0 || gameType > 3 || gameType <= 0 || numberOfQuestions < 1) {throw {message:"Invalid input"};}
                 currentRound = 1;
                 guessLimit = guessLimitInput;
                 guessRemaining = guessLimit;
@@ -30,7 +31,6 @@ function Game () {
                 difficulty = gameType;
                 var idList  = randInstance.generateListRandom(1, await databaseInstance.count(), numberOfQuestions);
                 questionRemaning = [];
-                if (guessLimitInput < 0 || difficulty > 3 || difficulty <= 0 || numberOfQuestions < 1) {throw {message:"Invalid input"};}
                 currentQuestion = await databaseInstance.getQuestion(idList.pop()); 
                 for (var i = 0; i < numberOfQuestions - 1; i++) {
                     questionRemaning[i] = await databaseInstance.getQuestion(idList.pop());
@@ -81,25 +81,40 @@ function Game () {
                 return (guessCorrect/guessAmount)*100;
             },           
             getData: function() {
-                var hintInput = currentQuestion.getNextHintText();
-                var accuracy = this.getAccuracyPercentage();
-                var hasGameEnded = (currentQuestion === null);
-                if (difficulty != 1) {
-                    hintInput = null;
+                if (currentQuestion == null) {
+                    console.log(questionRemaning.length);
+                    return {
+                        "choice1": null,
+                        "choice2": null,
+                        "choice3": null,
+                        "choice4": null,
+                        "hint": null, 
+                        "accuracyPercentage": this.getAccuracyPercentage(),
+                        "currentRound": currentRound,
+                        "guessRemaning": guessRemaining,
+                        "guessAmount": guessAmount,
+                        "guessCorrect": guessCorrect,
+                        "hasGameEnded": true
+                    };
+                } else  {
+                    var hintInput = currentQuestion.getNextHintText();
+                    if (difficulty != 1) {
+                        hintInput = null;
+                    }
+                    return {
+                        "choice1": currentQuestion.getChoice(1),
+                        "choice2": currentQuestion.getChoice(2),
+                        "choice3": currentQuestion.getChoice(3),
+                        "choice4": currentQuestion.getChoice(4),
+                        "hint": hintInput, 
+                        "accuracyPercentage": this.getAccuracyPercentage(),
+                        "currentRound": currentRound,
+                        "guessRemaning": guessRemaining,
+                        "guessAmount": guessAmount,
+                        "guessCorrect": guessCorrect,
+                        "hasGameEnded": false
+                    };
                 }
-                return {
-                    "choice1": currentQuestion.getChoice(1),
-                    "choice2": currentQuestion.getChoice(2),
-                    "choice3": currentQuestion.getChoice(3),
-                    "choice4": currentQuestion.getChoice(4),
-                    "hint": hintInput, 
-                    "accuracyPercentage": accuracy,
-                    "currentRound": currentRound,
-                    "guessRemaning": guessRemaining,
-                    "guessAmount": guessAmount,
-                    "guessCorrect": guessCorrect,
-                    "hasGameEnded": hasGameEnded
-                };
             },
             getLeaderboardCount: async function() {
                 return new Promise((resolve) => {

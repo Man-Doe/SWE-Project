@@ -3,7 +3,7 @@
 function Database() {
     const Question = require("./Question");
     const sqlite3 = require("sqlite3").verbose();
-    const db = new sqlite3.Database("backend/db/GameDatabase.db", sqlite3.OPEN_READWRITE, (err) => {
+    const db = new sqlite3.Database("../db/GameDatabase.db", sqlite3.OPEN_READWRITE, (err) => {
         if (err) return console.error(err.message);
     });
     return {
@@ -34,14 +34,10 @@ function Database() {
         },
         insertIntoLeaderboard: async function(username, score) {
             var query = 'INSERT INTO Leaderboard(username, accuracy) VALUES (?, ?);';
-            return new Promise((resolve, reject) => {
-                db.get(query, [username, score], (err, row) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(row);
-                    }
-                });
+            db.run(query, [username, score], function(err) {
+                if (err) {
+                    return console.error(err.message);
+                  }
             });
         },
         getLeaderboardCount: async function() {
@@ -57,7 +53,7 @@ function Database() {
             });
         },
         getLeaderboardRank: async function(rank) {
-            if (rank > this.getLeaderboardCount()) {throw {message: "Rank does not exist within leadboard"};}
+            if (rank > await this.getLeaderboardCount()) {throw {message: "Rank does not exist within leadboard"};}
             var query = "SELECT * FROM Leaderboard ORDER BY accuracy DESC LIMIT 1 OFFSET ?;";
             return new Promise((resolve, reject) => {
                 db.get(query, [(rank-1)], (err, row) => {
@@ -72,6 +68,7 @@ function Database() {
     };
 }
 
+db = Database();
 
 
 module.exports = Database;
