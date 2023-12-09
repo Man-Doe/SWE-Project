@@ -40,8 +40,7 @@
 
       
 
-      const baseurl = window.location.href.replace(/\/$/, "");  // Remove trailing slash if any
-      const audioElement = new Audio(`${baseurl}/tracks/testAudio.mp3`);
+      const audioElement = new Audio(`/SWE-Project/tracks/testAudio.mp3`);
       audioElement.value = 4;
 
       console.log(audioElement.value)
