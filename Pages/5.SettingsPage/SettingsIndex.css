@@ -11,9 +11,9 @@
   .slider-placeholder-here {
     position: absolute;
     top: 270px;
-    left: 315px;
+    left: 295px;
     display: inline-block;
-    width: 200px;
+    width: 300px;
     font-style: italic;
     display: block;
     background-color: #4b01f693;
@@ -23,10 +23,21 @@
     align-self: center;
   }
 
+  .slider{
+    width: 150px;
+  }
+
 
 
   .dropdown-placeholder {
     top: 400px;
+    width: 300px;
+  }
+
+  .rbuttons{
+    display:flex;
+    justify-content: center;
+    justify-content: space-around;
   }
 
   .backButton{
