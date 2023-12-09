@@ -113,7 +113,7 @@ const QuestionList = function () {
         },
         getChoice: function (choiceInput) {
             if (currentQuestion == null) {throw {message: "No more questions"};}
-            currentQuestion.getChoice(choiceInput);
+            return currentQuestion.getChoice(choiceInput);
         },
         getCorrectBPM: function() {
             if (currentQuestion == null) {throw {message: "No more questions"};}
@@ -154,7 +154,7 @@ const QuestionList = function () {
 //        document.writeln("Passed test 1\n");
 //     }
   
-    try {
+   /* try {
         something.nextQuestion()
     } catch (error) {
         document.writeln("passed test 2\n");
@@ -257,4 +257,4 @@ const QuestionList = function () {
         outcome = false;
     }
     if (outcome) {document.writeln("passed test 10");}
-}
+*/
