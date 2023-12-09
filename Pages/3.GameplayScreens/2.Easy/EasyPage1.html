@@ -38,6 +38,13 @@
       var guessesLeft = 3;
       var numGuesses = 0;
 
+      
+
+      const audioElement = new Audio('../../../tracks/jounrey_home_82bpm.mp3');
+
+      audioElement.value = 4;
+
+      console.log(audioElement.value)
       /*function selectClip (): BPM
         will at random
       */
@@ -77,29 +84,35 @@
 
         **note - functionw will proabaly need to pass the buttons to use them
       */
+     
+
       function setCorrectAns(){
         var arr = [option_1, option_2, option_3, option_4]
 
         right_button = Math.floor(Math.random() * 4) + 1;
-        bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60; 
-        
+        bpm_ans = Math.floor(Math.random() * (130 - 80 + 1)) + 80; 
+
         var found = arr.find((element) => 
         document.getElementById(element.getAttribute('id')).value == right_button);
         document.getElementById(found.getAttribute('id')).innerHTML = bpm_ans;
 
         if(option_1 != found)
-          document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-1").innerHTML = getRandomizedNum(bpm_ans);
   
         if(option_2 != found)
-          document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-2").innerHTML = getRandomizedNum(bpm_ans);
         
         if(option_3 != found)
-          document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-3").innerHTML = getRandomizedNum(bpm_ans);
 
         if(option_4 != found)
-          document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-4").innerHTML = getRandomizedNum(bpm_ans);
         
         console.log(bpm_ans)
+      }
+
+      function getRandomizedNum(bpm_ans) {
+        return Math.floor(Math.random() * (bpm_ans + 14 - (bpm_ans - 20) + 1) + (bpm_ans - 20));
       }
 
       /* function isCorrect(opt: optButton): void
@@ -154,14 +167,30 @@
         }); 
       }
 
+
       if (toggleMusic) {
         toggleMusic.addEventListener("mouseover", function (e) {
             document.getElementById("hintPHolder").style.display = 'block';
         });
+
+        toggleMusic.addEventListener("click", function(e){
+          if(audioElement.paused == true){
+            audioElement.play();
+          }else{
+              audioElement.pause();
+          }
+        });
+
+        audioElement.addEventListener('ended', function(){
+          audioElement.currentTime = 0;
+          audioElement.play();
+        });
+
         toggleMusic.addEventListener("mouseout", function (e) {
             document.getElementById("hintPHolder").style.display = 'none';
         }); 
       }
+
 
       if (option_1)
         isCorrect(option_1);
