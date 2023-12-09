@@ -41,7 +41,6 @@
     var question_num = 1;
     var guessesLeft = 3;
     var numGuesses = 0;
-    var isPlaying = false;
 
     var something = QuestionList();
     something.generateQuestions(5);
@@ -109,10 +108,10 @@
         document.getElementById(element.getAttribute('id')).value == right_button);
         document.getElementById(found.getAttribute('id')).innerHTML = bpm_ans;
 
-        console.log(something.getChoice(1))
-        console.log(something.getChoice(2))
-        console.log(something.getChoice(3))
-        console.log(something.getChoice(4))
+        // console.log(something.getChoice(1))
+        // console.log(something.getChoice(2))
+        // console.log(something.getChoice(3))
+        // console.log(something.getChoice(4))
         
 
         if(option_1 != found)
@@ -185,23 +184,14 @@
 
 
       if (toggleMusic) {
-        toggleMusic.addEventListener("mouseover", function (e) {
-            document.getElementById("hintPHolder").style.display = 'block';
-        });
 
         toggleMusic.addEventListener("click", function(e){ 
-          console.log(something.isPlaying())
-          if(isPlaying == false){
-            something.playMusic();
-            isPlaying = true
-          }else{
+          if(something.isPlaying() == false)
             something.pauseMusic();
-            isPlaying = false
-          }
+          else
+            something.playMusic();
+            
         });
-
-        toggleMusic.addEventListener("mouseout", function (e) {
-        }); 
       }
 
 

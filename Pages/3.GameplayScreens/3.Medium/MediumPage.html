@@ -21,23 +21,35 @@
       <button class="button3" id="option-3" value="3">Opt 3</button>
       <button class="button4" id="option-4" value="4">Opt 4</button>
       <div class="guessText" id="guessCount">Guesses Left: 2 Total: 0</div>
-      <div class="infoText" id="hintPHolder" style="display: none;"> This serves as a
-      note for the user to know that music has yet to be implemented, for now, just try to guess
-    the correct answer</div>
       <img class="stop-and-play-duotone-icon" id="toggleMusic" alt="" src="../../../Assets/Stop_and_play_duotone.svg" />
 
       <img class="nextArrow" alt="" id="nextArr" src="../../../Assets/Right-Arrow.svg" hidden="" />
       
     </div>
 
-    <script>
-      var right_button;
-      var bpm_ans;
-      var correct_guesses = 0;
-      var question_num = 1;
-      var guessesLeft = 2;
-      var numGuesses = 0;
+    <script src="../../src/QuestionList.js"></script>
 
+    <script>
+     var right_button;
+    var bpm_ans;
+
+    var correct_guesses = 0;
+    var question_num = 1;
+    var guessesLeft = 2;
+    var numGuesses = 0;
+    var isPlaying = false;
+
+    var something = QuestionList();
+    something.generateQuestions(5);
+    something.pauseMusic()
+
+    //console.log(something.getChoice(3))
+
+    //something.getChoice(1);
+
+    /*function selectClip (): BPM
+        will at random
+      */
 
       /*function revealAns():
         - turns off all buttons before hand
@@ -47,6 +59,8 @@
       */
       function revealAns(){
         var arr = [option_1, option_2,option_3,option_4]
+
+        
         
         toggleButtons(true)
 
@@ -57,40 +71,71 @@
         document.getElementById("nextArr").removeAttribute("hidden");
         }
 
-      /*function toggleButtons(t_f):void
-        enables/disables all buttons at the same time
+
+        /*function toggleButtons(t_f):void
+        enables/disables all buttons at the same time*/
+        function toggleButtons(t_f){
+          option_1.disabled = t_f;
+          option_2.disabled = t_f
+          option_3.disabled = t_f;
+          option_4.disabled = t_f;
+        }
+
+      /*function setCorrectAns(): void
+        -randomly generates four answers, 3 being wrong and 1 being right
+        -sets the correct answer based off what right_button equals
+        -sets the other buttons to random answers between 60-144bpm
+
+        **note - functionw will proabaly need to pass the buttons to use them
       */
-      function toggleButtons(t_f){
-        option_1.disabled = t_f;
-        option_2.disabled = t_f
-        option_3.disabled = t_f;
-        option_4.disabled = t_f;
-      }
+     
 
       function setCorrectAns(){
         var arr = [option_1, option_2, option_3, option_4]
 
-        right_button = Math.floor(Math.random() * 4) + 1;
-        bpm_ans = Math.floor(Math.random() * (144 - 60 + 1)) + 60; 
-        
+        if (something.getCorrectBPM() >= 0) {
+          console.log("correct: " + something.getCorrectBPM())
+          console.log("choice: " + something.getCorrectChoice())
+        }
+
+
+        right_button = something.getCorrectChoice();
+        bpm_ans = something.getCorrectBPM();
+
         var found = arr.find((element) => 
         document.getElementById(element.getAttribute('id')).value == right_button);
         document.getElementById(found.getAttribute('id')).innerHTML = bpm_ans;
 
+        // console.log(something.getChoice(1))
+        // console.log(something.getChoice(2))
+        // console.log(something.getChoice(3))
+        // console.log(something.getChoice(4))
+        
+
         if(option_1 != found)
-          document.getElementById("option-1").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-1").innerHTML = something.getChoice(1)
   
         if(option_2 != found)
-          document.getElementById("option-2").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-2").innerHTML = something.getChoice(2)
         
         if(option_3 != found)
-          document.getElementById("option-3").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-3").innerHTML = something.getChoice(3)
 
         if(option_4 != found)
-          document.getElementById("option-4").innerHTML = Math.floor(Math.random()* (144 - 60 + 1)) + 60;
+          document.getElementById("option-4").innerHTML = something.getChoice(4)
         
         console.log(bpm_ans)
       }
+
+      /* function isCorrect(opt: optButton): void
+        - takes in a button object and checks to see if it is correct
+        - regardless of conditional, we inc numGuesses, and dec guessesLeft
+        - if the button is correct, we set its text to "Correct" and reveal
+        nextbutton
+        - otherwise we set the text to "Wrong!", update the game stats display
+          - if player has no guesses left, then revealAns is called
+        - at the end, the button is disabled
+      */
 
       function isCorrect(optButton){
         optButton.addEventListener("click", function (e) {
@@ -112,6 +157,7 @@
           optButton.disabled = true; 
         });
       }
+      /************************************************************************/
 
       const toggleMusic = document.getElementById("toggleMusic");
       const option_1 = document.getElementById("option-1");
@@ -122,27 +168,29 @@
 
       setCorrectAns();
 
+
       if (toggleMusic) {
-        toggleMusic.addEventListener("mouseover", function (e) {
-            document.getElementById("hintPHolder").style.display = 'block';
+        toggleMusic.addEventListener("click", function(e){ 
+          if(something.isPlaying() == false)
+            something.pauseMusic();
+          else
+            something.playMusic();    
         });
-        toggleMusic.addEventListener("mouseout", function (e) {
-            document.getElementById("hintPHolder").style.display = 'none';
-        }); 
       }
 
-      if (option_1) 
-       isCorrect(option_1)
 
-      if(option_2)
-        isCorrect(option_2)
+      if (option_1)
+        isCorrect(option_1);
+      
+      if (option_2)
+        isCorrect(option_2);
 
-      if (option_3) 
-        isCorrect(option_3)
+      if (option_3)
+        isCorrect(option_3);
 
-      if (option_4) 
-        isCorrect(option_4)
-
+      if (option_4)
+        isCorrect(option_4);
+      
       if (nextButton) {
         nextButton.addEventListener("click", function (e) {
           if (question_num + 1 > 5){
@@ -151,14 +199,14 @@
             localStorage.setItem('correct-guesses', correct_guesses);
             localStorage.setItem('game-mode', document.getElementById('gamemode').innerHTML)
             window.location.href = '../5.Results/Results.html'
-            
+          
           } else {
-            
+            something.nextQuestion();
             setCorrectAns();
+
             toggleButtons(false);
             question_num++;
             guessesLeft = 2;
-            
             document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
             + ' Total:' + numGuesses + " Correct: " + correct_guesses;
             document.getElementById("header").innerHTML = "Song " + question_num + "/5";

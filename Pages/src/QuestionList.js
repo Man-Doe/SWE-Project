@@ -133,7 +133,7 @@ const QuestionList = function () {
         },
         isPlaying: function(){
             if (currentQuestion == null) {throw {message: "No more questions"};}
-            currentQuestion.isPlaying()
+            return currentQuestion.isPlaying()
         },
         pauseMusic: function() {
             if (currentQuestion == null) {throw {message: "No more questions"};}
