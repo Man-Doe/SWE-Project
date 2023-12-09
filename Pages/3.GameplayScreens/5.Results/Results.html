@@ -30,9 +30,29 @@
 
     <script>
 
+
+// Sorting function
+function sortData(a, b) {
+  // Sort by difficulty
+  const difficultyOrder = { 'Easy': 0, 'Medium': 1, 'Hard': 2 };
+  const difficultyComparison = difficultyOrder[a.Difficulty] - difficultyOrder[b.Difficulty];
+  if (difficultyComparison !== 0) {
+    return difficultyComparison;
+  }
+
+  // If difficulty is the same, sort by accuracy
+  if (a.Accuracy !== b.Accuracy) {
+    return b.Accuracy - a.Accuracy; // Higher accuracy comes first
+  }
+
+  // If difficulty and accuracy are the same, sort by correctness
+  return b.Correct - a.Correct; // Higher correct values come first
+}
+
       const guessCnt = localStorage.getItem('total-guesses');
       const corGuesses = localStorage.getItem('correct-guesses');
       const gameMode = localStorage.getItem('game-mode')
+      let data = [];
 
       console.log(localStorage);
 
@@ -40,6 +60,16 @@
       document.getElementById("final").innerHTML = "Correct: " +
       corGuesses + "/5 <br /> Accuracy: " + (corGuesses/guessCnt * 100).toFixed(2) + "%<br /> Difficulty: " +
       gameMode;
+
+      if(data.length == 0)
+        data.push({Name: 'John', Difficulty: gameMode, Correct: corGuesses, Accuracy:(corGuesses/guessCnt * 100).toFixed(2)});
+      else
+      data.push({Name: 'Mike', Difficulty: gameMode, Correct: corGuesses, Accuracy:(corGuesses/guessCnt * 100).toFixed(2)});
+
+      console.log(data)
+     const sortedData = data.sort(sortData);
+
+      // console.log(sortedData);
         
 
       const hintIcon = document.getElementById("hintIcon");
@@ -66,6 +96,7 @@
       if (buttonContainer) {
         buttonContainer.addEventListener("click", function (e) {
           e.target.innerHTML = "Saved!"
+
           buttonContainer.disabled = true;
         });
         
