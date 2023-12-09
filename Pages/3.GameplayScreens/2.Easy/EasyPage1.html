@@ -40,7 +40,7 @@
 
       
 
-      const audioElement = new Audio('../../../tracks/jounrey_home_82bpm.mp3');
+      const audioElement = new Audio('../../../tracks/testAudio.mp3');
 
       audioElement.value = 4;
 
@@ -90,7 +90,7 @@
         var arr = [option_1, option_2, option_3, option_4]
 
         right_button = Math.floor(Math.random() * 4) + 1;
-        bpm_ans = Math.floor(Math.random() * (130 - 80 + 1)) + 80; 
+        bpm_ans = 82
 
         var found = arr.find((element) => 
         document.getElementById(element.getAttribute('id')).value == right_button);
@@ -183,7 +183,10 @@
 
         audioElement.addEventListener('ended', function(){
           audioElement.currentTime = 0;
-          audioElement.play();
+
+          setTimeout(function() {
+            audioElement.play();
+          }, 1000);
         });
 
         toggleMusic.addEventListener("mouseout", function (e) {
