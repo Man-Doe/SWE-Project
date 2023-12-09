@@ -1,0 +1,37 @@
+How to use:
+first use generateQuestions(amount);
+then get data from the currentQuestion in QuestionList by using the getters.
+Once you are done with the question use the nextQuestion().
+
+
+
+
+
+ generateQuestions(amount: Integer) 
+ Intalizes list when question equal to the value of amount.
+
+ nextQuestion()
+ Pauses the current audio clip if it is playing and switches to a new question. If there is nore more questions to switch to when this function is called it will throw an error.
+
+ getChoice(choiceInput: Integer)
+ A choice that comes from a question has values [1-4]. This function returns the bpm associated of the choice using the value of choiceInput;
+
+ getCorrectBPM()
+ returns the BPM of the current Question
+
+ getCorrectChoice()
+A choice that comes from a question has values [1-4]. This function returns a number [1-4] which respresnts the correct choice out of those 4 values.
+
+ getHint()
+ returns the hint of the current question
+
+
+playMusic()
+plays music that is looping
+
+pauseMusic()
+pauses music
+
+loadMusic()
+loads music
+
