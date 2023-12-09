@@ -27,24 +27,35 @@
       </div>
       <img class="stop-and-play-duotone-icon" id="toggleMusic" alt="" src="../../../Assets/Stop_and_play_duotone.svg" />
       <img class="nextArrow" alt="" id="nextArr" src="../../../Assets/Right-Arrow.svg" hidden="" />
+
+
+      <script src="../../src/QuestionList.js"></script>
       
     </div>
 
     <script>
     var right_button;
-      var bpm_ans;
-      var correct_guesses = 0;
-      var question_num = 1;
-      var guessesLeft = 3;
-      var numGuesses = 0;
+    var bpm_ans;
 
-      
+    var correct_guesses = 0;
+    var question_num = 1;
+    var guessesLeft = 3;
+    var numGuesses = 0;
+    var isPlaying = false;
 
-      const audioElement = new Audio(`../../../Tracks/testAudio.mp3`);
-      audioElement.value = 4;
+    var something = QuestionList();
+    
+    something.generateQuestions(5);
+    if (something.getCorrectBPM() >= 0) {
+      console.log("correct: " + something.getCorrectBPM())
+      console.log("choice: " + something.getCorrectChoice())
+    }
 
-      console.log(audioElement.value)
-      /*function selectClip (): BPM
+    //console.log(something.getChoice(3))
+
+    //something.getChoice(1);
+
+    /*function selectClip (): BPM
         will at random
       */
 
@@ -56,6 +67,8 @@
       */
       function revealAns(){
         var arr = [option_1, option_2,option_3,option_4]
+
+        
         
         toggleButtons(true)
 
@@ -88,30 +101,32 @@
       function setCorrectAns(){
         var arr = [option_1, option_2, option_3, option_4]
 
-        right_button = Math.floor(Math.random() * 4) + 1;
-        bpm_ans = 82
+        if (something.getCorrectBPM() >= 0) {
+          console.log("correct: " + something.getCorrectBPM())
+          console.log("choice: " + something.getCorrectChoice())
+        }
+
+
+        right_button = something.getCorrectChoice();
+        bpm_ans = something.getCorrectBPM();
 
         var found = arr.find((element) => 
         document.getElementById(element.getAttribute('id')).value == right_button);
         document.getElementById(found.getAttribute('id')).innerHTML = bpm_ans;
 
         if(option_1 != found)
-          document.getElementById("option-1").innerHTML = getRandomizedNum(bpm_ans);
+          document.getElementById("option-1").innerHTML = something.getChoice(1)
   
         if(option_2 != found)
-          document.getElementById("option-2").innerHTML = getRandomizedNum(bpm_ans);
+          document.getElementById("option-2").innerHTML = something.getChoice(2)
         
         if(option_3 != found)
-          document.getElementById("option-3").innerHTML = getRandomizedNum(bpm_ans);
+          document.getElementById("option-3").innerHTML = something.getChoice(3)
 
         if(option_4 != found)
-          document.getElementById("option-4").innerHTML = getRandomizedNum(bpm_ans);
+          document.getElementById("option-4").innerHTML = something.getChoice(4)
         
         console.log(bpm_ans)
-      }
-
-      function getRandomizedNum(bpm_ans) {
-        return Math.floor(Math.random() * (bpm_ans + 14 - (bpm_ans - 20) + 1) + (bpm_ans - 20));
       }
 
       /* function isCorrect(opt: optButton): void
@@ -159,6 +174,7 @@
       
       if (hintIcon) {
         hintIcon.addEventListener("mouseover", function (e) {
+          document.getElementById("hintPHolder").innerHTML = something.getHint();
             document.getElementById("hintPHolder").style.display = 'block';
         });
         hintIcon.addEventListener("mouseout", function (e) {
@@ -172,24 +188,18 @@
             document.getElementById("hintPHolder").style.display = 'block';
         });
 
-        toggleMusic.addEventListener("click", function(e){
-          if(audioElement.paused == true){
-            audioElement.play();
+        toggleMusic.addEventListener("click", function(e){ 
+          console.log(something.isPlaying())
+          if(isPlaying == false){
+            something.playMusic();
+            isPlaying = true
           }else{
-              audioElement.pause();
+            something.pauseMusic();
+            isPlaying = false
           }
         });
 
-        audioElement.addEventListener('ended', function(){
-          audioElement.currentTime = 0;
-
-          setTimeout(function() {
-            audioElement.play();
-          }, 1000);
-        });
-
         toggleMusic.addEventListener("mouseout", function (e) {
-            document.getElementById("hintPHolder").style.display = 'none';
         }); 
       }
 
@@ -216,12 +226,13 @@
             window.location.href = '../5.Results/Results.html'
           
           } else {
-            
+            something.nextQuestion();
+            isPlaying = false
             setCorrectAns();
+
             toggleButtons(false);
             question_num++;
             guessesLeft = 3;
-            
             document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
             + ' Total:' + numGuesses + " Correct: " + correct_guesses;
             document.getElementById("header").innerHTML = "Song " + question_num + "/5";
