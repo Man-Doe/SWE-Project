@@ -26,19 +26,25 @@ const QuestionList = function () {
         const audioClip = new Audio(audioRelativePathInput);
         const bpm = bpmInput;
         const hint = hintInput;
-        var choiceArray;
+        var choiceArray = [];
+
+        function contains (arr, value) {
+            for (let item of arr) {
+                if (item == value) {return true;}
+            }
+            return false;
+        }
     
         do {
             choiceArray = generateListRandom(60,144,3);
-        } while(choiceArray.includes(bpm));
+        } while(contains(choiceArray, bpm));
     
         const correctChoice = generateRandomInclusive(1,4);
         if (correctChoice != 4) {
-    
+            choiceArray.splice(correctChoice-1, 0, bpm);
         } else  {
             choiceArray.push(bpm);
         }
-        choiceArray.splice(correctChoice-1, 0, bpm);
     
         return Object.freeze( {
                 isCorrectChoice: function (choiceInput) {
@@ -99,8 +105,8 @@ const QuestionList = function () {
             currentQuestion = userList.pop();
         },
         getChoice: function (choiceInput) {
-            if (!(choiceInput >= 1 && choiceInput <= choiceArray.length)) {throw {message: "Out of Range"}};
-            return choiceArray[choiceInput-1];
+            if (currentQuestion == null) {throw {message: "No more questions"};}
+            currentQuestion.getChoice(choiceInput);
         },
         getCorrectBPM: function() {
             if (currentQuestion == null) {throw {message: "No more questions"};}
@@ -140,43 +146,104 @@ const QuestionList = function () {
     try {
         something.nextQuestion()
     } catch (error) {
-        document.writeln("passsed test 2\n");
+        document.writeln("passed test 2\n");
     }
 
     something = QuestionList();
     try {
         something.getChoice(3);
     } catch (error) {
-        document.writeln("passsed test 3\n");
+        document.writeln("passed test 3\n");
     }
     try {
         something.getCorrectBPM();
     } catch (error) {
-        document.writeln("passsed test 4\n");
+        document.writeln("passed test 4\n");
     }
     try {
         something.getCorrectChoice();
     } catch (error) {
-        document.writeln("passsed test 5\n");
+        document.writeln("passed test 5\n");
     }
     try {
         something.getHint();
     } catch (error) {
-        document.writeln("passsed test 6\n");
+        document.writeln("passed test 6\n");
     }
     try {
         something.playMusic();
     } catch (error) {
-        document.writeln("passsed test 7\n");
+        document.writeln("passed test 7\n");
     }
     try {
         something.pauseMusic();
     } catch (error) {
-        document.writeln("passsed test 8\n");
+        document.writeln("passed test 8\n");
     }
     try {
         something.loadMusic();
     } catch (error) {
-        document.writeln("passsed test 9\n");
+        document.writeln("passed test 9\n");
     }
+    
+    function contains (arr, value) {
+        for (let item of arr) {
+            if (item == value) {return true;}
+        }
+        return false;
+    }
+
+    function isAllValuesUnique(arr) {
+        const uniqueValues = new Set(arr);
+        return uniqueValues.size === arr.length;
+    }
+
+    function generateRandomInclusive (floor, ceiling) {
+        return Math.floor(Math.random() * (ceiling - floor + 1)) + floor;
+    }
+
+    function generateListRandom(floor, ceiling, amount) {
+        if (amount > (ceiling - floor + 1) || amount < 0) throw {message: "Invalid amount"};
+
+        var result = [];
+        var i = 0;
+        var randNum;
+
+        while (i < amount) {
+            randNum = generateRandomInclusive(floor,ceiling);
+            while (result.includes(randNum)) {randNum = generateRandomInclusive(floor,ceiling)};
+            result.push(randNum);
+            i++;
+        }
+
+        return result;
+    }
+    var outcome = true;
+    try {
+        for (var i = 0; i < 1000000; i++) {
+            var choiceArray;
+            var bpm = generateRandomInclusive(60,144);
+            do {
+                choiceArray = generateListRandom(60,144,3);
+            } while(contains(choiceArray, bpm));
+        
+            var correctChoice = generateRandomInclusive(1,4);
+            
+            if (correctChoice != 4) {
+                choiceArray.splice(correctChoice-1, 0, bpm);
+            } else  {
+                choiceArray.push(bpm);
+            }
+            
+            if (!isAllValuesUnique(choiceArray)) {
+                document.writeln(choiceArray);
+                outcome = false;
+                break;
+            }
+        }
+    } catch (err) {
+        document.writeln(err);
+        outcome = false;
+    }
+    if (outcome) {document.writeln("passed test 10");}
 }
