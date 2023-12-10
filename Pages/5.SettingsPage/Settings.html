@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="foreground">
-      <div class="headingText">Settings</div>
+      <div class="headingText" id="Title">Settings</div>
       <img
         class="backButton"
         alt=""
@@ -21,29 +21,79 @@
         id="backButton"
       />
 
-      <div class="slider-placeholder-here">
-        <label for="fontsize" id="font-size">Font Size</label>
+      <div class="button_text_Slider" id="bTextSlider">Button Font Size: 
+        &nbsp;&nbsp;&nbsp;
         <input
           class="slider"
           type="range"
           min="1"
-          max="300"
-          value="10"
-          class="slider"
+          max="3"
+          value="2"
           id="myRange"
         />
       </div>
-      <div class="dropdown-placeholder">
-        <form action="" class="rbuttons">
-          <input type="radio" id="normal" name="font" value="Normal" />
-          <label for="normal">Normal</label><br />
-          <input type="radio" id="simple" name="font" value="Simple" />
+      <div class="normal_simple_Text" id="nSimpleText">
+        <form action="" class="rbuttons">Font Type:
+          <input type="radio" id="normal" name="font" value="Normal"/>
+          <label for="normal">Normal</label><br/>
+          <input type="radio" id="simple" name="font" value="Simple"/>
           <label for="simple">Simple</label><br />
         </form>
       </div>
     </div>
 
     <script>
+      console.log(localStorage.getItem('fontType'));
+      var font_type;
+      switch(localStorage.getItem('fontType')){
+        case '1':
+          font_type = 'Novem'; 
+        break;
+    
+        case '2':
+          font_type = 'Times New Roman, serif';
+        break;
+      
+        default:
+          font_type = 'Novem'; 
+        break;
+      }
+      document.getElementById('Title').style.fontFamily = font_type;
+      document.getElementById('normal').style.fontFamily = font_type;
+      document.getElementById('simple').style.fontFamily = font_type;
+      document.getElementById('bTextSlider').style.fontFamily = font_type;
+      document.getElementById('nSimpleText').style.fontFamily = font_type;
+      
+    </script>
+
+    <script>
+      const range = document.querySelector('input');
+      localStorage.setItem("textSize", 2);
+
+      range.addEventListener('input', function(){
+        localStorage.setItem("textSize",range.value);
+      });
+      
+
+      const normalFont = document.getElementById('normal')
+      const simpleFont = document.getElementById('simple')
+
+      normalFont.addEventListener('click', function(){
+        if (normalFont.checked){
+          console.log('here')
+        localStorage.setItem("fontType", 1);
+      }
+      });
+
+      simpleFont.addEventListener('click', function(){
+        console.log(simpleFont.checked)
+        if (simpleFont.checked){
+        localStorage.setItem("fontType", 2);
+      }
+      });
+
+      
+
       var vector = document.getElementById("backButton");
       if (vector) {
         vector.addEventListener("click", function (e) {

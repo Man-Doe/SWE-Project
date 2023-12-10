@@ -34,6 +34,61 @@
     </div>
 
     <script>
+      console.log(localStorage.getItem('textSize'));
+      var text_size;
+      switch(localStorage.getItem('textSize')){
+        case '1':
+          text_size = 12 + 'px';
+        break;
+        
+        case '2':
+        text_size = 18 + 'px';
+        break;
+        
+        case '3':
+        text_size = 24 + 'px';
+        break;
+        
+        default:
+        text_size = 18 + 'px';
+        break;
+      }
+
+      document.getElementById('option-1').style.fontSize = text_size;
+      document.getElementById('option-2').style.fontSize = text_size;
+      document.getElementById('option-3').style.fontSize = text_size;
+      document.getElementById('option-4').style.fontSize = text_size;
+      document.getElementById('gamemode').style.fontSize = text_size;
+    </script>
+
+<script>
+  console.log(localStorage.getItem('fontType'));
+  var font_type;
+  switch(localStorage.getItem('fontType')){
+    case '1':
+      font_type = 'Novem'; 
+    break;
+
+    case '2':
+      font_type = 'Times New Roman, serif';
+    break;
+  
+    default:
+      font_type = 'Novem'; 
+    break;
+  }
+  document.getElementById('header').style.fontFamily = font_type;
+  document.getElementById('guessCount').style.fontFamily = font_type;
+  document.getElementById('gamemode').style.fontFamily = font_type;
+  document.getElementById('option-1').style.fontFamily = font_type;
+  document.getElementById('option-2').style.fontFamily = font_type;
+  document.getElementById('option-3').style.fontFamily = font_type;
+  document.getElementById('option-4').style.fontFamily = font_type;
+
+  
+</script>
+
+    <script>
     var right_button;
     var bpm_ans;
 
@@ -62,14 +117,12 @@
       function revealAns(){
         var arr = [option_1, option_2,option_3,option_4]
 
-        
-        
         toggleButtons(true)
 
         var found = arr.find((element) => 
         document.getElementById(element.getAttribute('id')).innerHTML == bpm_ans);
         
-        document.getElementById(found.getAttribute('id')).innerHTML = "Answer:" + document.getElementById(found.getAttribute('id')).innerHTML;
+        document.getElementById(found.getAttribute('id')).innerHTML = "Answer: " + document.getElementById(found.getAttribute('id')).innerHTML;
         document.getElementById("guessCount").innerHTML ="Guesses Left: " + guessesLeft 
             + ' Total: ' + numGuesses + " Correct: " + correct_guesses;
 

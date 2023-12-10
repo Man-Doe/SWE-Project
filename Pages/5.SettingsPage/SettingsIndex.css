@@ -7,29 +7,55 @@
     width: 269px;
   }
 
-  .dropdown-placeholder,
-  .slider-placeholder-here {
+  .normal_simple_Text,
+  .button_text_Slider {
     position: absolute;
     top: 270px;
-    left: 295px;
+    left: 175px;
     display: inline-block;
-    width: 300px;
     font-style: italic;
+    font-size: 25px;
     display: block;
-    background-color: #4b01f693;
+    background-color: rgba(38, 1, 246, 0.576);
     border-radius: var(--br-9xs);
     padding: 10px;
     box-shadow: 0 0 20px #11b3a6;
-    align-self: center;
+    align-self:flex-start;
+    min-width: 500px;
   }
 
-  .slider{
-    width: 150px;
+  .slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 15px;
+    background: rgba(38, 1, 246, 0.576);
+    outline: none;
+    border: 5px solid #15e4d2;
+    border-radius: 8px;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 40px;
+    background: rgba(38, 1, 246, 0.576);
+    cursor: pointer;
+    border: 5px solid #15e4d2;
+    border-radius: 4px;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 20px;
+    height: 60px;
+    background: rgba(38, 1, 246, 0.576);
+    cursor: pointer;
+    border: 5px solid #15e4d2;
+    border-radius: 4px;
   }
 
 
-
-  .dropdown-placeholder {
+  .normal_simple_Text {
     top: 400px;
     width: 300px;
   }

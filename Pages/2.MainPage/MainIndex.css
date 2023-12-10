@@ -1,10 +1,10 @@
 .headingText {
     position:absolute;
     top: 110px;
-    left: calc(50% - 139.5px);
+    left: calc(50% - 150.5px);
     font-size: 50px;
     display: inline-block;
-    width: 279px;
+    width: 300px;
     height: 75px;
     
 }
@@ -23,7 +23,6 @@
   justify-content: center;
   box-sizing: border-box;
   cursor: pointer;
-  font-size: 20px;
 }
 
   .button2 {
@@ -36,8 +35,8 @@
 
 .button4 {
   position: absolute;
-  top: 582px;
-  left: 615px;
+  top: 580px;
+  left: 0px;
  }
 
  .infoText{
@@ -51,7 +50,7 @@
   font-size: 18px;
   font-style: italic;
   display: block;
-  background-color: #4b01f693;
+  background-color: rgba(38, 1, 246, 0.576);
   border-radius: var(--br-9xs);
   padding: var(--padding-5xs) var(--padding-base);
   box-shadow: 0 0 20px #11b3a6;

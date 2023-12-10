@@ -13,20 +13,74 @@
   </head>
   <body>
     <div class="foreground">
-      <div class="headingText">Results</div>
+      <div class="headingText" id="Title">Results</div>
       <img class="hintIcon" id="hintIcon" src="../../../Assets/Info_alt_duotone.svg" />
       <button class="button1" id="submitUser">Register</button>
       <button class="button2" id="retryButton">Play Again</button>
       <button class="button3" id="chooseDifButton">Select Difficulty</button>
       <button class="button4" id="leaderButton">Leaderboards</button>
-      <label class="boxLabel" for="text-Box">Enter Name:</label>
+      <label class="boxLabel" for="text-Box" id="enterName">Enter Name:</label>
         <input class="textBox" type="text" id="textBox" name=""></input>
       <div class="final-score" id="final">Correct: #/5, Accuracy: ###%</div>
       <img class="home-icon" alt="" src="../../../Assets/Home-Icon.svg" id="home" />
-      <div class="infoText" id="hintPHolder" style="display: none;"> user in final version will be able
-        to enter a username and have it recorded to their personal leadberboard
+      <div class="infoText" id="leaderboardText" style="display: none;"> Did your score make it to the top?
+        Let's save it and find out!
       </div>
     </div>
+
+    <script>
+      console.log(localStorage.getItem('textSize'));
+      var text_size;
+      switch(localStorage.getItem('textSize')){
+        case '1':
+          text_size = 12 + 'px';
+        break;
+        
+        case '2':
+        text_size = 18 + 'px';
+        break;
+        
+        case '3':
+        text_size = 24 + 'px';
+        break;
+        
+        default:
+        text_size = 18 + 'px';
+        break;
+      }
+      document.getElementById('submitUser').style.fontSize = text_size;
+      document.getElementById('retryButton').style.fontSize = text_size;
+      document.getElementById('chooseDifButton').style.fontSize = text_size;
+      document.getElementById('leaderButton').style.fontSize = text_size;
+    </script>
+
+    <script>
+      console.log(localStorage.getItem('fontType'));
+      var font_type;
+      switch(localStorage.getItem('fontType')){
+        case '1':
+          font_type = 'Novem'; 
+        break;
+
+        case '2':
+          font_type = 'Times New Roman, serif';
+        break;
+      
+        default:
+          font_type = 'Novem'; 
+        break;
+      }
+
+      document.getElementById('Title').style.fontFamily = font_type;
+      document.getElementById('final').style.fontFamily = font_type;
+      document.getElementById('leaderboardText').style.fontFamily = font_type;
+      document.getElementById('enterName').style.fontFamily = font_type;
+      document.getElementById('submitUser').style.fontFamily = font_type;
+      document.getElementById('retryButton').style.fontFamily = font_type;
+      document.getElementById('chooseDifButton').style.fontFamily = font_type;
+      document.getElementById('leaderButton').style.fontFamily = font_type;
+      
+    </script>
 
     <script>
 
@@ -69,51 +123,43 @@ function sortData(a, b) {
   // Parse the string from localStorage back into an array
         data = JSON.parse(data);
       }
-
-      // Now, storedArray contains the array from localStorage (either the existing one or the newly created empty array)
-      //console.log(data);
-      //console.log(localStorage);
-
-        
+       
       document.getElementById("final").innerHTML = "Correct: " +
       corGuesses + "/5 <br /> Accuracy: " + (corGuesses/guessCnt * 100).toFixed(2) + "%<br /> Difficulty: " +
       gameMode;
 
-      //console.log(sortedData);
-        
-
       const hintIcon = document.getElementById("hintIcon");
         if (hintIcon) {
           hintIcon.addEventListener("mouseover", function (e) {
-              document.getElementById("hintPHolder").style.display = 'block';
+              document.getElementById("leaderboardText").style.display = 'block';
           });
           hintIcon.addEventListener("mouseout", function (e) {
-              document.getElementById("hintPHolder").style.display = 'none';
+              document.getElementById("leaderboardText").style.display = 'none';
           }); 
       }
 
       const regButton = document.getElementById("submitUser");
         if (submitUser) {
           submitUser.addEventListener("mouseover", function (e) {
-              document.getElementById("hintPHolder").style.display = 'block';
+              document.getElementById("leaderboardText").style.display = 'block';
           });
           submitUser.addEventListener("mouseout", function (e) {
-              document.getElementById("hintPHolder").style.display = 'none';
+              document.getElementById("leaderboardText").style.display = 'none';
           }); 
-      }
 
-      var buttonContainer = document.getElementById("submitUser");
-      if (buttonContainer) {
-        buttonContainer.addEventListener("click", function (e) {
-          data.push({Name: document.getElementById('textBox').value, Difficulty: gameMode, Correct: corGuesses, Accuracy:(corGuesses/guessCnt * 100).toFixed(2)});
+          submitUser.addEventListener("click", function (e) {
+          data.push({Name: document.getElementById('textBox').value, 
+          Difficulty: gameMode, Correct: corGuesses, Accuracy:(corGuesses/guessCnt * 100).toFixed(2)});
           const sortedData = data.sort(sortData);
+          
           if (data.length > 10)
             data.pop();
             console.log(sortedData)
           localStorage.setItem('myScores', JSON.stringify(data));
+          
           e.target.innerHTML = "Saved!"
 
-          buttonContainer.disabled = true;
+          submitUser.disabled = true;
         });
         
       }

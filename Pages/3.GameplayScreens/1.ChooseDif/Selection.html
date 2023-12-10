@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="foreground">
-      <div class="headingText">Select Difficulty</div>
+      <div class="headingText" id="Title">Select Difficulty</div>
       <button class="button1" id="eButton"> Easy</button>
       <button class="button2" id="mButton">Medium</button>
       <button class="button3" id="hButton">Hard</button>
@@ -25,6 +25,57 @@
         id="bButton"
       />
     </div>
+    <script>
+      console.log(localStorage.getItem('textSize'));
+      var text_size;
+      var text_font;
+      switch(localStorage.getItem('textSize')){
+        case '1':
+          text_size = 12 + 'px';
+        break;
+        
+        case '2':
+        text_size = 18 + 'px';
+        break;
+        
+        case '3':
+        text_size = 24 + 'px';
+        break;
+        
+        default:
+        text_size = 18 + 'px';
+        break;
+      }
+
+      document.getElementById('eButton').style.fontSize = text_size;
+      document.getElementById('mButton').style.fontSize = text_size;
+      document.getElementById('hButton').style.fontSize = text_size;
+    </script>
+
+     
+<script>
+  console.log(localStorage.getItem('fontType'));
+  var font_type;
+  switch(localStorage.getItem('fontType')){
+    case '1':
+      font_type = 'Novem'; 
+    break;
+
+    case '2':
+      font_type = 'Times New Roman, serif';
+    break;
+  
+    default:
+      font_type = 'Novem'; 
+    break;
+  }
+
+  document.getElementById('eButton').style.fontFamily = font_type;
+  document.getElementById('mButton').style.fontFamily = font_type;
+  document.getElementById('hButton').style.fontFamily = font_type;
+  document.getElementById('Title').style.fontFamily = font_type;
+
+</script>
 
     <script>
       var buttonContainer = document.getElementById("eButton");

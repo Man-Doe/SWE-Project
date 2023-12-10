@@ -24,10 +24,10 @@
     text-align: center; 
     align-content: center;
     width: 230px;
-    font-size: 14px;
+    font-size: 18px;
     font-style: italic;
     display: block;
-    background-color: #4b01f693;
+    background-color: rgba(38, 1, 246, 0.576);
     border-radius: var(--br-9xs);
     padding: var(--padding-5xs) var(--padding-base);
     box-shadow: 0 0 20px #11b3a6;
@@ -52,7 +52,6 @@
   top: 332px;
   left: 172px;
   font-size: 22px;
-  font-family: var(--novem);
 }
   .textBox{
     position: absolute;
@@ -85,13 +84,12 @@
     top: 323px;
     left: 520px;
     width: 118px;
-    height: 39px;
+    min-height: fit-content;
     display: flex;
     align-items: center;
     border-radius: var(--br-9xs);
     justify-content: center;
     padding: var(--padding-5xs) var(--padding-base);
-    
     box-sizing: border-box;
     cursor: pointer;
   }
@@ -102,13 +100,14 @@
 
     top: 456px;
     width: 179px;
-    height: 54px;
+    min-height: fit-content;
   }
   .button2 {
     left: 100px;
   }
   .button3 {
     left: 330px;
+    min-height: fit-content;
   }
   .button4{
     left: 550px;
@@ -124,7 +123,3 @@
     filter:brightness(100)
   }
 
-  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-
-  }
-  

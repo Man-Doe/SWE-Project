@@ -21,7 +21,6 @@
     width: 189px;
     height: 47px;
     display: flex;
-    font-size: 20px;
     padding: var(--padding-5xs) var(--padding-base);
     box-sizing: border-box;
     cursor: pointer;

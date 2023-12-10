@@ -52,8 +52,8 @@ html {
     align-items: center;
     text-align: center;
     justify-content: center;
-    font-size: 18px;
-    font-family: Novem;;
+    font-size: 12px;
+    font-family: Novem;
   }
 
   .button1:hover,
@@ -86,7 +86,6 @@ html {
   
   :root {
     /* fonts */
-    --font-inter: Inter;
   
     /* font sizes */
     --font-size-xl: 20px;

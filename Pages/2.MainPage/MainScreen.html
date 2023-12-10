@@ -12,22 +12,72 @@
     />
   </head>
   <body>
-    <div class="foreground">
-      <div class="headingText">BPM Rhythm Guesser</div>
+    <div class="foreground", id="theGround">
+      <div class="headingText", id="Title">BPM Rhythm Guesser</div>
       <button class="button1" id="ChooseDifPage">Play Game</button>
       <button class="button2" id="leaderPage">Leaderboards</button>
       <button class="button3" id="settingsPage">Settings</button>
       <form action="https://www.deviantart.com/king-lulu-deer/gallery" method="get" target="_blank">
-        <button class="button4" type="submit">Art By: King-Lulu-Deer</button>
+        <button class="button4" type="submit" id="artistPage">Art By: King-Lulu-Deer</button>
       </form>
-      <div class="infoText" id="welcomeUser"> Welcome: Guest!
+      <div class="infoText" id="welcomeUser">
       </div>
     </div>
+    <script>
+      console.log(localStorage.getItem('textSize'));
+      var text_size;
+      switch(localStorage.getItem('textSize')){
+        case '1':
+          text_size = 12 + 'px';
+        break;
+        
+        case '2':
+        text_size = 18 + 'px';
+        break;
+        
+        case '3':
+        text_size = 24 + 'px';
+        break;
+        
+        default:
+        text_size = 18 + 'px';
+        break;
+      }
+
+      document.getElementById('ChooseDifPage').style.fontSize = text_size;
+      document.getElementById('leaderPage').style.fontSize = text_size;
+      document.getElementById('settingsPage').style.fontSize = text_size;
+      document.getElementById('artistPage').style.fontSize = text_size;
+    </script>
+    
+    <script>
+      console.log(localStorage.getItem('fontType'));
+      var font_type;
+      switch(localStorage.getItem('fontType')){
+        case '1':
+          font_type = 'Novem'; 
+        break;
+    
+        case '2':
+          font_type = 'Times New Roman, serif';
+        break;
+      
+        default:
+          font_type = 'Novem'; 
+        break;
+      }
+
+      document.getElementById('ChooseDifPage').style.fontFamily =  font_type;
+      document.getElementById('leaderPage').style.fontFamily =  font_type;
+      document.getElementById('settingsPage').style.fontFamily =  font_type;
+      document.getElementById('artistPage').style.fontFamily =  font_type;
+      document.getElementById('theGround').style.fontFamily = font_type;
+      document.getElementById('Title').style.fontFamily = font_type;
+
+    </script>
 
     <script>
-
-      console.log(localStorage.getItem('user-name'))
-
+    
       document.getElementById("welcomeUser").innerHTML = "Welcome: " + localStorage.getItem('user-name') + '!'
       var buttonContainer = document.getElementById("ChooseDifPage");
       if (buttonContainer) {

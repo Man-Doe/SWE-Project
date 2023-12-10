@@ -49,7 +49,7 @@
   font-size: 14px;
   font-style: italic;
   display: block;
-  background-color: #4b01f693;
+  background-color: rgba(38, 1, 246, 0.576);
   border-radius: var(--br-9xs);
   padding: var(--padding-5xs) var(--padding-base);
   box-shadow: 0 0 20px #11b3a6;
@@ -64,8 +64,8 @@
   position: absolute;
   top: 500px;
   left: 95px;
+  min-height: fit-content;
   width: 128px;
-  height: 43px;
   }
 
   .button2 {
