@@ -27,6 +27,7 @@
             localStorage.setItem("user-name", "Guest")
           else
             localStorage.setItem("user-name", document.getElementById("usernameT-Box").value)
+            localStorage.removeItem('myScores')
           window.location.href = './Pages/2.MainPage/MainScreen.html'
         });
       }
