@@ -68,10 +68,20 @@
 
     <script>
       const range = document.querySelector('input');
-      localStorage.setItem("textSize", 2);
+      // localStorage.setItem("textSize", 2);
+
+      document.getElementById("bTextSlider").value = Number(localStorage.getItem('textSize'))
+
 
       range.addEventListener('input', function(){
         localStorage.setItem("textSize",range.value);
+        document.getElementById("bTextSlider").value = Number(localStorage.getItem('textSize'))
+        console.log(document.getElementById("bTextSlider").value)
+      })
+      range.addEventListener('mouseup', function(){
+        localStorage.setItem("textSize",range.value);
+        document.getElementById("bTextSlider").value = Number(localStorage.getItem('textSize'))
+        console.log(document.getElementById("bTextSlider").value)
       });
       
 
