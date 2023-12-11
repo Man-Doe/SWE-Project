@@ -73,6 +73,7 @@
     border-radius: var(--padding-5xs) var(--padding-base);
     background-size: 200% 100%;
     transition: 0.8s ease-out;
+    color: white;
   }
 
 

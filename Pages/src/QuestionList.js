@@ -85,16 +85,16 @@ const QuestionList = function () {
     };
 
     //intalize list 
-    questionStore[0] = Question("../../../Tracks/air_raid_130bpm.mp3", 130, "SUPERHEROES from Daft Punk is 140 BPM.");
-    questionStore[1] = Question("../../../Tracks/catacombs_136bpm.mp3", 136, "Seems pretty fast! A song with a similar tempo is __ by __ at __.");
-    questionStore[2] = Question("../../../Tracks/dreamscape_110bpm.mp3", 110, "Hmmm, when I listen to this, ___ by ___ at ___ comes to mind...");
-    questionStore[3] = Question("../../../Tracks/hammer_remix-X-doki_doki_105bpm.mp3", 105, "Silent Night, Holy Night by Frank Sinatra is 90 BPM.");
-    questionStore[4] = Question("../../../Tracks/head_in_the_clouds_115bpm.mp3", 115, "Holiday by Weezer is 120 BPM.");
-    questionStore[5] = Question("../../../Tracks/journey_home_82bpm.mp3", 82, "Seems pretty fast! A song with a similar tempo is __ by __ at __.");
-    questionStore[6] = Question("../../../Tracks/midnight_rush_100bpm.mp3", 100, "Hmmm, when I listen to this, ___ by ___ at ___ comes to mind...");
-    questionStore[7] = Question("../../../Tracks/simulationator_118bpm.mp3", 118, "Holiday by Weezer is 120 BPM.");
-    questionStore[8] = Question("../../../Tracks/The_Inquisition_Bach_Little_Fugue_In_G_Minor_85bpm.mp3", 85, "Between Two Worlds by Mili is 83 BPM.");
-    questionStore[9] = Question("../../../Tracks/vector_vibes_100bpm.mp3", 100, "Silent Night Holy Night by Frank Sinatra is 90 BPM.")
+    questionStore[0] = Question("../../../Tracks/air_raid_130bpm.mp3", 130, "You know, the song 'YMCA' by Village people is 127 BPM, this song doesn’t seem too far off from that…");
+    questionStore[1] = Question("../../../Tracks/catacombs_136bpm.mp3", 136, "Seems pretty fast! A song with a similar tempo is SUPERHEROES by DaftPunk at 140 BPM.");
+    questionStore[2] = Question("../../../Tracks/dreamscape_110bpm.mp3", 110, "Hmmm, listen to those bells! 1..2..3..4..1..2..3..4, try counting them like that to get a feel of the tempo");
+    questionStore[3] = Question("../../../Tracks/hammer_remix-X-doki_doki_105bpm.mp3", 105, "Another One Bites the Dust by Queen at 110 BPM is awfully similar to this one.");
+    questionStore[4] = Question("../../../Tracks/head_in_the_clouds_115bpm.mp3", 115, "A well known song with a similar BPM is Don't Stop Believin' by Journey at 119 BPM.");
+    questionStore[5] = Question("../../../Tracks/journey_home_82bpm.mp3", 82, "Hmm, it's quite slow dont you think? another slow song is Between Two Worlds by Mili at 83 BPM");
+    questionStore[6] = Question("../../../Tracks/midnight_rush_100bpm.mp3", 100, "Hmmm, when I listen to this, it reminds me of All Star by Smash Mouth at 105 BPM");
+    questionStore[7] = Question("../../../Tracks/simulationator_118bpm.mp3", 118, "Get this: If a clock ticks at twice its normal speed, its BPM is 120, this sounds close to that!");
+    questionStore[8] = Question("../../../Tracks/The_Inquisition_Bach_Little_Fugue_In_G_Minor_85bpm.mp3", 85, "Seems like a slow one! Silent Night Holy Night by Frank Sinatra's got a similar tempo at 90 BPM.");
+    questionStore[9] = Question("../../../Tracks/vector_vibes_100bpm.mp3", 100, "")
 
     return Object.freeze({
         generateQuestions: function (amount) {

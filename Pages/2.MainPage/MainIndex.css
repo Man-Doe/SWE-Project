@@ -44,7 +44,7 @@
   top: 500px;
   left: 320px;
   width: 200px;
-  height: 40px;
+  height: fit-content;
   text-align: center; 
   align-content: center;
   font-size: 18px;
