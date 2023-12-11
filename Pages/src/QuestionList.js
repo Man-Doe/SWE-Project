@@ -37,7 +37,7 @@ const QuestionList = function () {
         }
     
         do {
-            choiceArray = generateListRandom(60,144,3);
+            choiceArray = generateListRandom(bpm - 15,bpm+15 ,3);
         } while(contains(choiceArray, bpm));
     
         const correctChoice = generateRandomInclusive(1,4);
