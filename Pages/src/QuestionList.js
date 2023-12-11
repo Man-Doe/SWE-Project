@@ -94,7 +94,7 @@ const QuestionList = function () {
     questionStore[6] = Question("../../../Tracks/midnight_rush_100bpm.mp3", 100, "Hmmm, when I listen to this, it reminds me of All Star by Smash Mouth at 105 BPM");
     questionStore[7] = Question("../../../Tracks/simulationator_118bpm.mp3", 118, "Get this: If a clock ticks at twice its normal speed, its BPM is 120, this sounds close to that!");
     questionStore[8] = Question("../../../Tracks/The_Inquisition_Bach_Little_Fugue_In_G_Minor_85bpm.mp3", 85, "Seems like a slow one! Silent Night Holy Night by Frank Sinatra's got a similar tempo at 90 BPM.");
-    questionStore[9] = Question("../../../Tracks/vector_vibes_100bpm.mp3", 100, "")
+    questionStore[9] = Question("../../../Tracks/vector_vibes_100bpm.mp3", 100, "This one reminds of Adele's Rolling in the Deep at 105BPM")
 
     return Object.freeze({
         generateQuestions: function (amount) {
